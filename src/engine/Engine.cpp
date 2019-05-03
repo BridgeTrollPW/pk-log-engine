@@ -10,10 +10,20 @@ namespace engine
     
     bool Engine::validate()
     {
-        if(engineInput.configFile == "" || engineInput.serverLogFile == "")
-            {
-                throw Exception("Missing required cli params", 0); 
-            }
-                
+        //TODO Validate Input
+        logger.info("Starting ...");
+    std::ifstream i(configFile);
+    if (i.fail()) {
+        logger.warn("Error loading config file " + configFile);
+        logger.warn("Trying default config file");
+        i = std::ifstream("config.json");
+        if (i.fail()) {
+            throw InvalidConfigException("Invalid Config", 0);
+        }
+    }
+
+    i >> configuration;
+    logger.info("Loaded config version " + configuration["version"].get<std::string>());
+
     }
 }
