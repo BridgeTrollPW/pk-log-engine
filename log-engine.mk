@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) 
 
 
 
@@ -91,45 +91,13 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix): src/main.cpp $(IntermediateDirectory)/src_main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_main.cpp$(DependSuffix): src/main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_main.cpp$(DependSuffix) -MM src/main.cpp
+$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix): src/modules/StartRoutine/StartRoutine.cpp $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/modules/StartRoutine/StartRoutine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix): src/modules/StartRoutine/StartRoutine.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix) -MM src/modules/StartRoutine/StartRoutine.cpp
 
-$(IntermediateDirectory)/src_main.cpp$(PreprocessSuffix): src/main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_main.cpp$(PreprocessSuffix) src/main.cpp
-
-$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix): src/util/logger/Logger.cpp $(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/util/logger/Logger.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix): src/util/logger/Logger.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix) -MM src/util/logger/Logger.cpp
-
-$(IntermediateDirectory)/src_util_logger_Logger.cpp$(PreprocessSuffix): src/util/logger/Logger.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(PreprocessSuffix) src/util/logger/Logger.cpp
-
-$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix): src/engine/Engine.cpp $(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/engine/Engine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix): src/engine/Engine.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix) -MM src/engine/Engine.cpp
-
-$(IntermediateDirectory)/src_engine_Engine.cpp$(PreprocessSuffix): src/engine/Engine.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_engine_Engine.cpp$(PreprocessSuffix) src/engine/Engine.cpp
-
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix): src/modules/RuleProcessor/RuleProcessor.cpp $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/modules/RuleProcessor/RuleProcessor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix) -MM src/modules/RuleProcessor/RuleProcessor.cpp
-
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix) src/modules/RuleProcessor/RuleProcessor.cpp
-
-$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix): src/util/ErrorHandler.cpp $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/util/ErrorHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix): src/util/ErrorHandler.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix) -MM src/util/ErrorHandler.cpp
-
-$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(PreprocessSuffix): src/util/ErrorHandler.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(PreprocessSuffix) src/util/ErrorHandler.cpp
+$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix): src/modules/StartRoutine/StartRoutine.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix) src/modules/StartRoutine/StartRoutine.cpp
 
 $(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix): src/util/Exception.cpp $(IntermediateDirectory)/src_util_Exception.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/util/Exception.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix) $(IncludePath)
@@ -139,13 +107,45 @@ $(IntermediateDirectory)/src_util_Exception.cpp$(DependSuffix): src/util/Excepti
 $(IntermediateDirectory)/src_util_Exception.cpp$(PreprocessSuffix): src/util/Exception.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_util_Exception.cpp$(PreprocessSuffix) src/util/Exception.cpp
 
-$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix): src/modules/StartRoutine/StartRoutine.cpp $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/modules/StartRoutine/StartRoutine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix): src/modules/StartRoutine/StartRoutine.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix) -MM src/modules/StartRoutine/StartRoutine.cpp
+$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix): src/util/ErrorHandler.cpp $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/util/ErrorHandler.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix): src/util/ErrorHandler.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(DependSuffix) -MM src/util/ErrorHandler.cpp
 
-$(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix): src/modules/StartRoutine/StartRoutine.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix) src/modules/StartRoutine/StartRoutine.cpp
+$(IntermediateDirectory)/src_util_ErrorHandler.cpp$(PreprocessSuffix): src/util/ErrorHandler.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(PreprocessSuffix) src/util/ErrorHandler.cpp
+
+$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix): src/engine/Engine.cpp $(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/engine/Engine.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix): src/engine/Engine.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_engine_Engine.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_engine_Engine.cpp$(DependSuffix) -MM src/engine/Engine.cpp
+
+$(IntermediateDirectory)/src_engine_Engine.cpp$(PreprocessSuffix): src/engine/Engine.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_engine_Engine.cpp$(PreprocessSuffix) src/engine/Engine.cpp
+
+$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix): src/util/logger/Logger.cpp $(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/util/logger/Logger.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix): src/util/logger/Logger.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_util_logger_Logger.cpp$(DependSuffix) -MM src/util/logger/Logger.cpp
+
+$(IntermediateDirectory)/src_util_logger_Logger.cpp$(PreprocessSuffix): src/util/logger/Logger.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(PreprocessSuffix) src/util/logger/Logger.cpp
+
+$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix): src/modules/RuleProcessor/RuleProcessor.cpp $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/modules/RuleProcessor/RuleProcessor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix) -MM src/modules/RuleProcessor/RuleProcessor.cpp
+
+$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix) src/modules/RuleProcessor/RuleProcessor.cpp
+
+$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix): src/main.cpp $(IntermediateDirectory)/src_main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/src_main.cpp$(DependSuffix): src/main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_main.cpp$(DependSuffix) -MM src/main.cpp
+
+$(IntermediateDirectory)/src_main.cpp$(PreprocessSuffix): src/main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_main.cpp$(PreprocessSuffix) src/main.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

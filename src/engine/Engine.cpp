@@ -1,6 +1,6 @@
 #include "Engine.h"
 
-namespace core
+namespace engine
 {
 
     Engine::Engine(model::EngineInput eIN): engineInput(eIN)
@@ -10,6 +10,10 @@ namespace core
     
     bool Engine::validate()
     {
-        
+        if(engineInput.configFile == "" || engineInput.serverLogFile == "")
+            {
+                throw Exception("Missing required cli params", 0); 
+            }
+                
     }
 }

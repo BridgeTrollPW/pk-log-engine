@@ -1,3 +1,6 @@
 {
-    "version": "0.1"
+    "version": "0.1",
+    "maxRequestLines": 500, //min and max lines cannot range < 500
+    "maxOutputLines": 500, //Independent of how many lines were requested, there can only be returned 500
+    "maxCategorisationTimeMS": 10000 //Independent of how many log lines are found by a searchquery, categorisation of these lines can only take 10 seconds max
 }

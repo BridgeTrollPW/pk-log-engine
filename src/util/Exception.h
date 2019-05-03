@@ -1,13 +1,6 @@
-#include <string>
-/* 
- * File:   Exception.h
- * Author: bt
- *
- * Created on 1. Mai 2019, 19:47
- */
-
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
+#include <string>
 
 class Exception
 {

@@ -93,6 +93,9 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="src/rules.json"/>
+    <File Name="src/log.txt"/>
+    <File Name="src/config.json"/>
     <File Name="src/main.cpp"/>
     <VirtualDirectory Name="modules">
       <VirtualDirectory Name="StartRoutine">
@@ -108,6 +111,15 @@
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="engine">
+      <File Name="src/engine/IEngine.h"/>
+      <VirtualDirectory Name="adapter">
+        <VirtualDirectory Name="TextSearch">
+          <File Name="src/engine/adapter/TextSearch/TextSearch.h"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="Categorisation">
+          <File Name="src/engine/adapter/Categorisation/Categorisation.h"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
       <File Name="src/engine/Engine.h"/>
       <File Name="src/engine/Engine.cpp"/>
       <VirtualDirectory Name="model">

@@ -1,15 +1,18 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 #include "model/EngineInput.h"
+#include "../util/Exception.h"
+#include "../util/logger/Logger.h"
 
-namespace core
+namespace engine
 {
 
     class Engine
     {
     private:
         model::EngineInput engineInput;
-
+        util::Logger logger;
+        
         bool validate();
 
     public:

@@ -14,13 +14,12 @@
 #include "../../engine/model/EngineInput.h"
 
 using json = nlohmann::json;
-using core::Engine;
-using core::model::EngineInput;
+using engine::Engine;
+using engine::model::EngineInput;
 
 StartRoutine::StartRoutine(int argc, char **argv)
 {
     EngineInput eIN;
-
 
     for (int i = 1; i < argc; ++i) {
         if (std::string(argv[i]) == "-help" || std::string(argv[i]) == "-h" || std::string(argv[i]) == "-?") {
@@ -73,6 +72,8 @@ StartRoutine::StartRoutine(int argc, char **argv)
 
 
     Engine engine = Engine(eIN);
+    
+    //This is all Categorisation Adapter TODO Move this shit
     /*logger.info("Starting ...");
     std::ifstream i(configFile);
     if (i.fail()) {
@@ -133,6 +134,7 @@ void StartRoutine::prepareRules()
 
 void StartRoutine::parseLogs(std::string searchString)
 {
+    //This is TextSearch Adapter -> TODO move this shit
     auto t1 = std::chrono::high_resolution_clock::now();
     int lineStart = 0;
     logger.info("checking for search " + searchString);
@@ -149,6 +151,7 @@ void StartRoutine::parseLogs(std::string searchString)
         }
     }
 
+//This is TextSearch Adapter -> TODO move this shit
     logFileHND.seekg(std::ios::beg);
     logger.info("starting parser @ " + std::to_string(lineStart));
     for (int i = 0; i < lineStart - 1; ++i) {
