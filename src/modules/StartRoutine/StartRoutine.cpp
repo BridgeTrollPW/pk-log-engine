@@ -5,13 +5,13 @@
 #include <string>
 #include <chrono>
 
-#include "../header/StartRoutine.h"
-#include "../../../util/exceptions/InvalidConfigException.h"
-#include "../../../util/exceptions/InvalidArgumentException.h"
-#include "../../RuleProcessor/header/Rule.h"
+#include "StartRoutine.h"
+#include "../../util/exceptions/InvalidConfigException.h"
+#include "../../util/exceptions/InvalidArgumentException.h"
+#include "../RuleProcessor/Rule.h"
 
-#include "../../core/Engine.h"
-#include "../../core/model/EngineInput.h"
+#include "../../engine/Engine.h"
+#include "../../engine/model/EngineInput.h"
 
 using json = nlohmann::json;
 using core::Engine;

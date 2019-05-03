@@ -93,6 +93,7 @@
     </Configuration>
   </Settings>
   <VirtualDirectory Name="src">
+    <File Name="src/main.cpp"/>
     <VirtualDirectory Name="modules">
       <VirtualDirectory Name="StartRoutine">
         <File Name="src/modules/StartRoutine/StartRoutine.h"/>
@@ -130,6 +131,5 @@
     <VirtualDirectory Name="lib">
       <File Name="src/lib/json.hpp"/>
     </VirtualDirectory>
-    <File Name="main.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

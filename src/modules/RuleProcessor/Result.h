@@ -15,7 +15,7 @@
 #define RESULT_H
 
 #include "Type.h"
-#include "../../../lib/json.hpp"
+#include "../../lib/json.hpp"
 
 using namespace nlohmann;
 
