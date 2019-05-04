@@ -7,6 +7,6 @@ public:
     virtual int getEngineFunction() = 0;
     virtual void prepare() = 0;
     virtual void run() = 0;
-    }
+};
 
 #endif

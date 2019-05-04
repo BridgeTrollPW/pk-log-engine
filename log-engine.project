@@ -111,6 +111,8 @@
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="engine">
+      <File Name="src/engine/Dispatcher.cpp"/>
+      <File Name="src/engine/Dispatcher.h"/>
       <File Name="src/engine/IEngine.h"/>
       <VirtualDirectory Name="adapter">
         <VirtualDirectory Name="TextSearch">
@@ -120,8 +122,6 @@
           <File Name="src/engine/adapter/Categorisation/Categorisation.h"/>
         </VirtualDirectory>
       </VirtualDirectory>
-      <File Name="src/engine/Engine.h"/>
-      <File Name="src/engine/Engine.cpp"/>
       <VirtualDirectory Name="model">
         <File Name="src/engine/model/EngineInput.h"/>
       </VirtualDirectory>

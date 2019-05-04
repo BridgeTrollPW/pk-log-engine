@@ -2,11 +2,15 @@
 #define TEXTSEARCH_H
 
 #include "src/engine/IEngine.h"
-namespace engine{ namespace adapter {
-
-class TextSearch : public IEngine
-{
+namespace engine 
+{ 
+    namespace adapter 
+    {
+        class TextSearch : public IEngine
+        {
+        public:
+            TextSearch();
+        };
     };
-};
 };
 #endif
