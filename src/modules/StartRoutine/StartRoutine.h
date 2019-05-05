@@ -11,11 +11,12 @@
 using namespace util;
 using namespace nlohmann;
 
-class StartRoutine {
+class StartRoutine
+{
 public:
-	StartRoutine(int argc, char **argv);
+    StartRoutine(int argc, char **argv);
 private:
-	Logger logger;
+    Logger logger = Logger("StartRoutine");
 };
 
 #endif /* STARTROUTINE_H */

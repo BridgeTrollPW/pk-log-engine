@@ -2,15 +2,21 @@
 #define TEXTSEARCH_H
 
 #include "../../IEngine.h"
-namespace engine 
-{ 
-    namespace adapter 
-    {
-        class TextSearch : public engine::IEngine
-        {
-        public:
-            TextSearch();
-        };
-    };
+#include "../../../util/logger/Logger.h"
+
+namespace engine
+{
+namespace adapter
+{
+class TextSearch: public engine::IEngine
+{
+public:
+    TextSearch();
+private:
+    util::Logger logger = util::Logger("TextSearch");
 };
+}
+;
+}
+;
 #endif

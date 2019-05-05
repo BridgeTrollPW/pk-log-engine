@@ -10,7 +10,7 @@ namespace engine
         struct EngineInput
         {
         public:
-            int function = 0;
+            int function = -1;
             std::string configFile = "";
             std::string serverLogFile = "";
             std::string searchStrings = "";

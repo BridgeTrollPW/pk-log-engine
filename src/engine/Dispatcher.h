@@ -17,13 +17,14 @@ namespace engine
     {
     private:
         model::EngineInput engineInput;
-        util::Logger logger;
+        util::Logger logger = util::Logger("Dispatcher");
         nlohmann::json configuration;
         
         std::list<IEngine*> executionList;
         
         void validate();
         void execAdapter();
+        void terminate();
 
     public:
         Dispatcher(model::EngineInput eIN);

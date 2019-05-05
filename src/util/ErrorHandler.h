@@ -9,7 +9,7 @@ class ErrorHandler
 public:
     int processException(Exception exception);
 private:
-    util::Logger logger;
+    util::Logger logger = util::Logger("ErrorHandler");
 };
 #endif // ERRORCODES_H
 

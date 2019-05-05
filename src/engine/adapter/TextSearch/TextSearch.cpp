@@ -2,7 +2,9 @@
 
 namespace engine {
 namespace adapter {
-TextSearch::TextSearch() {
+TextSearch::TextSearch()
+{
+    logger.info("Starting TextSearch Adapter");
 }
 ;
 }
