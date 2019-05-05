@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "src/modules/StartRoutine/StartRoutine.h"
+#include "modules/StartRoutine/StartRoutine.h"
 #include "util/Exception.h"
 #include "util/ErrorHandler.h"
 

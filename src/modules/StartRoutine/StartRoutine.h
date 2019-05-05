@@ -11,21 +11,11 @@
 using namespace util;
 using namespace nlohmann;
 
-class StartRoutine
-{
+class StartRoutine {
 public:
-    StartRoutine(int argc, char **argv);
+	StartRoutine(int argc, char **argv);
 private:
-    Logger logger;
-    json configuration;
-    RuleProcessor ruleProcessor;
-
-    std::ifstream logFileHND;
-
-    bool prettyPrinting;
-
-    void prepareRules();
-    void parseLogs(std::string search);
+	Logger logger;
 };
 
 #endif /* STARTROUTINE_H */

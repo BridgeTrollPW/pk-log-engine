@@ -5,6 +5,7 @@
 #include "model/EngineInput.h"
 #include "../util/Exception.h"
 #include "../util/exceptions/InvalidConfigException.h"
+#include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/logger/Logger.h"
 #include "../lib/json.hpp"
 #include "IEngine.h"
@@ -19,9 +20,9 @@ namespace engine
         util::Logger logger;
         nlohmann::json configuration;
         
-        std::list<IEngine> executionList;
+        std::list<IEngine*> executionList;
         
-        bool validate();
+        void validate();
         void execAdapter();
 
     public:

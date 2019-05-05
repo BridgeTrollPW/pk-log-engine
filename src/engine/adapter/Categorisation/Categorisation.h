@@ -1,12 +1,12 @@
 #ifndef CATEGORISATION_H
 #define CATEGORISATION_H
 
-#include "src/engine/IEngine.h"
+#include "../../IEngine.h"
 namespace engine 
 {
     namespace adapter
     {
-        class Categorisation : public IEngine
+        class Categorisation : public engine::IEngine
         {
         };
     };
