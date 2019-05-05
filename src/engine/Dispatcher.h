@@ -8,7 +8,7 @@
 #include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/logger/Logger.h"
 #include "../lib/json.hpp"
-#include "IEngine.h"
+#include "IEngineAdapter.h"
 
 namespace engine
 {
@@ -20,7 +20,7 @@ namespace engine
         util::Logger logger = util::Logger("Dispatcher");
         nlohmann::json configuration;
         
-        std::list<IEngine*> executionList;
+        std::list<IEngineAdapter*> executionList;
         
         void validate();
         void execAdapter();

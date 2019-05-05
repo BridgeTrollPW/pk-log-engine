@@ -3,7 +3,7 @@
 
 namespace engine {
 
-class IEngine {
+class IEngineAdapter{
 public:
 	int getEngineFunction();
 	void prepare();

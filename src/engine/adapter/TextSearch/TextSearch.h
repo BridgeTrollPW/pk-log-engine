@@ -1,14 +1,14 @@
 #ifndef TEXTSEARCH_H
 #define TEXTSEARCH_H
 
-#include "../../IEngine.h"
+#include "../../IEngineAdapter.h"
 #include "../../../util/logger/Logger.h"
 
 namespace engine
 {
 namespace adapter
 {
-class TextSearch: public engine::IEngine
+class TextSearch: public engine::IEngineAdapter
 {
 public:
     TextSearch();
