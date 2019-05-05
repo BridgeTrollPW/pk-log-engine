@@ -54,7 +54,9 @@ void Dispatcher::execAdapter()
     }
     default:
     {
-        logger.warn("Engine function " + std::to_string(engineInput.function) + " is not implemented");
+        logger.warn(
+                "Engine function " + std::to_string(engineInput.function)
+                        + " is not implemented");
         break;
     }
     }
