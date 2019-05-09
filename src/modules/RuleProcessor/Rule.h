@@ -19,30 +19,32 @@
 
 class Rule
 {
-private:
-    std::string name;
-    std::string regex;
-    std::map<int, std::string> groups;
-public:
+        private:
+                std::string name;
+                std::string regex;
+                std::map<int, std::string> groups;
+        public:
 
-    Rule(std::string name, std::string regex, std::map<int, std::string> matchingGroups) : name(name), regex(regex), groups(matchingGroups)
-    {
-    }
+                Rule(std::string name, std::string regex, std::map<int,
+                                std::string> matchingGroups) :
+                                name(name), regex(regex), groups(matchingGroups)
+                {
+                }
 
-    std::string getRegex()
-    {
-        return regex;
-    }
+                std::string getRegex()
+                {
+                        return regex;
+                }
 
-    std::string getName()
-    {
-        return name;
-    }
-    
-    std::map<int, std::string> getGroups()
-    {
-        return groups;
-    }
+                std::string getName()
+                {
+                        return name;
+                }
+
+                std::map<int, std::string> getGroups()
+                {
+                        return groups;
+                }
 };
 
 #endif /* RULE_H */

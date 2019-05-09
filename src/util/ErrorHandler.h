@@ -1,15 +1,15 @@
 #ifndef ERRORCODES_H
 #define ERRORCODES_H
 
-#include "logger/Logger.h"
 #include "Exception.h"
+#include "logger/Logger.h"
 
-class ErrorHandler 
+class ErrorHandler
 {
-public:
-    int processException(Exception exception);
-private:
-    util::Logger logger = util::Logger("ErrorHandler");
+        public:
+                int processException(Exception exception);
+        private:
+                util::Logger logger = util::Logger("ErrorHandler");
 };
 #endif // ERRORCODES_H
 

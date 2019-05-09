@@ -1,21 +1,23 @@
 #ifndef INVALIDCONFIGEXCEPTION_H
 #define INVALIDCONFIGEXCEPTION_H
 
+#include <string>
+
 #include "../Exception.h"
 
-class InvalidConfigException : public Exception
+class InvalidConfigException: public Exception
 {
-private:
-    std::string message;
-    int code;
-public:
+        private:
+                std::string message;
+                int code;
+        public:
 
-    InvalidConfigException(std::string message, int code) :
-    Exception(message, code)
-    {
-        this->message = message;
-        this->code = code;
-    }
+                InvalidConfigException(std::string message, int code) :
+                                Exception(message, code)
+                {
+                        this->message = message;
+                        this->code = code;
+                }
 
 };
 

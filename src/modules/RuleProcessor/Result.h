@@ -21,20 +21,17 @@ using namespace nlohmann;
 
 class Result
 {
-public:
-    std::string type;
-    std::string raw;
-    std::map<std::string, std::string> mappings;
+        public:
+                std::string type;
+                std::string raw;
+                std::map<std::string, std::string> mappings;
 
-    void to_json(json& j)
-    {
-        j = json{
-            {"type", type},
-            {"raw", raw}
-        };
-        json j_map(mappings);
-        j["mappings"] = j_map;
-    }
+                void to_json(json& j)
+                {
+                        j = json { { "type", type }, { "raw", raw } };
+                        json j_map(mappings);
+                        j["mappings"] = j_map;
+                }
 };
 
 #endif /* RESULT_H */

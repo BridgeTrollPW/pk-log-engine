@@ -14,7 +14,9 @@
 #ifndef TYPE_H
 #define TYPE_H
 
-class Type{};
+class Type
+{
+};
 
 #endif /* TYPE_H */
 

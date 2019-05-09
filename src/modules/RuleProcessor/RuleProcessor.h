@@ -22,19 +22,24 @@
 #include "Result.h"
 #include "Type.h"
 
-class RuleProcessor 
+class RuleProcessor
 {
-private:
-    std::list<Rule> rules;
-    
-public:
-    RuleProcessor(){}
-    RuleProcessor(std::list<Rule> ruleList): rules(ruleList) {}
-    void setRules(std::list<Rule> ruleList);
-    
-    Type getTypeByRule(Rule rule);
-    Result processLine(std::string logLine);
-    
+        private:
+                std::list<Rule> rules;
+
+        public:
+                RuleProcessor()
+                {
+                }
+                RuleProcessor(std::list<Rule> ruleList) :
+                                rules(ruleList)
+                {
+                }
+                void setRules(std::list<Rule> ruleList);
+
+                Type getTypeByRule(Rule rule);
+                Result processLine(std::string logLine);
+
 };
 
 #endif /* RULEPROCESSOR_H */

@@ -5,7 +5,10 @@ This is a simple binary that can search and parse loglines from M&B - Warband se
 The default rules are done for the Persistent Kingdoms module
 
 ## Interface
+### Examples
+`-c config.json -l log3.txt -f 0 -s Bridge_Troll;RDM;12:32`
 
+This will search the whole log file and return log lines that contain either Bridge_Troll, RDM and/or 12:32
 ### Input: CLI
 `-c , -config`
 >This specifies the Configuration File. Best is if you use absolute paths like `-c /srv/www/myServerBackend/log-engine/config.json`
