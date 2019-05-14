@@ -5,20 +5,20 @@
 
 namespace engine
 {
-        namespace model
-        {
+    namespace model
+    {
 
-                struct EngineInput
-                {
-                        public:
-                                int function = -1;
-                                std::string configFile = "";
-                                std::string serverLogFile = "";
-                                std::string searchStrings = "";
-                                std::string linePairs = "";
-                                bool prettyPrinting = false;
-                };
-        }
+        struct EngineInput
+        {
+            public:
+                int function = -1;
+                std::string configFile = "";
+                std::string serverLogFile = "";
+                std::string searchStrings = "";
+                std::string linePairs = "";
+                bool prettyPrinting = false;
+        };
+    }
 }
 #endif /* ENGINEINPUT_H */
 

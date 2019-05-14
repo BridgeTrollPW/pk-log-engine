@@ -1,10 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
  * File:   Result.h
  * Author: bt
  *
@@ -14,24 +8,24 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-#include "Type.h"
-#include "../../lib/json.hpp"
+#include <map>
+#include <string>
 
-using namespace nlohmann;
+#include "../../lib/json.hpp"
 
 class Result
 {
-        public:
-                std::string type;
-                std::string raw;
-                std::map<std::string, std::string> mappings;
+    public:
+        std::string type;
+        std::string raw;
+        std::map<std::string, std::string> mappings;
 
-                void to_json(json& j)
-                {
-                        j = json { { "type", type }, { "raw", raw } };
-                        json j_map(mappings);
-                        j["mappings"] = j_map;
-                }
+        void to_json(nlohmann::json& j)
+        {
+            j = nlohmann::json { { "type", type }, { "raw", raw } };
+            nlohmann::json j_map(mappings);
+            j["mappings"] = j_map;
+        }
 };
 
 #endif /* RESULT_H */
