@@ -1,3 +1,12 @@
+/* Created by BridgeTroll
+ * https://bridgetroll.de
+ * https://steamcommunity.com/id/Bridge_Troll/
+ *
+ * TextSearch.h
+ *
+ *  Created on: 13.05.2019
+ *      Author: bt
+ */
 #ifndef TEXTSEARCH_H
 #define TEXTSEARCH_H
 
@@ -11,39 +20,41 @@
 
 namespace engine
 {
-        namespace adapter
+    namespace adapter
+    {
+        class TextSearch: public engine::IEngineAdapter
         {
-                class TextSearch: public engine::IEngineAdapter
+            public:
+                TextSearch(std::string filePath, std::string searchTerms);
+                TextSearch(std::string filePath, std::string searchTerms, std::list<
+                        std::string> ouputBuffer);
+                /**
+                 * get Engine name as string
+                 * immutable
+                 */
+                std::string getName() const
                 {
-                        public:
-                                TextSearch(std::string filePath, std::string searchTerms);
-                                /**
-                                 * get Engine name as string
-                                 * immutable
-                                 */
-                                std::string getName() const
-                                {
-                                        return ("TextSearch");
-                                }
-                                /**
-                                 * get engine function as integer value
-                                 * immutable
-                                 */
-                                int getEngineFunction() const
-                                {
-                                        return (Dispatcher::ENGINE_FUNCTION::SEARCH);
-                                }
-                                void run();
+                    return ("TextSearch");
+                }
+                /**
+                 * get engine function as integer value
+                 * immutable
+                 */
+                int getEngineFunction() const
+                {
+                    return (Dispatcher::ENGINE_FUNCTION::SEARCH);
+                }
+                void run();
 
-                        protected:
-                                ~TextSearch();
-                        private:
-                                util::Logger logger = util::Logger("TextSearch");
-                                std::ifstream getFileInputStream(std::string filePath);
+            protected:
+                ~TextSearch();
+            private:
+                util::Logger logger = util::Logger("TextSearch");
+                std::ifstream getFileInputStream(std::string filePath);
 
-                                std::string filePath;
-                                std::vector<std::string> searchTerms;
-                };
-        }
+                std::string filePath;
+                std::vector<std::string> searchTerms;
+        };
+    }
 }
 #endif

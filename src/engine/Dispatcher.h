@@ -1,5 +1,14 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+/* Created by BridgeTroll
+ * https://bridgetroll.de
+ * https://steamcommunity.com/id/Bridge_Troll/
+ *
+ * Dispatcher.h
+ *
+ *  Created on: 13.05.2019
+ *      Author: bt
+ */
+#ifndef DISPATCHER_H
+#define DISPATCHER_H
 
 #include <list>
 
@@ -11,27 +20,27 @@
 namespace engine
 {
 
-        class Dispatcher
-        {
-                private:
-                        model::EngineInput engineInput;
-                        util::Logger logger = util::Logger("Dispatcher");
-                        nlohmann::json configuration;
+    class Dispatcher
+    {
+        private:
+            model::EngineInput engineInput;
+            util::Logger logger = util::Logger("Dispatcher");
+            nlohmann::json configuration;
 
-                        std::list<IEngineAdapter*> executionList;
+            std::list<IEngineAdapter*> executionList;
 
-                        void validate();
-                        void initEngines();
-                        void run();
-                        void terminate();
+            void validate();
+            void initEngines();
+            void run();
+            void terminate();
 
-                public:
-                        Dispatcher(model::EngineInput eIN);
+        public:
+            Dispatcher(model::EngineInput eIN);
 
-                        enum ENGINE_FUNCTION
-                        {
-                                SEARCH = 0, SEARCH_AND_CATEGORIZE = 1, RETURN_RAW = 2
-                        };
-        };
+            enum ENGINE_FUNCTION
+            {
+                SEARCH = 0, SEARCH_AND_CATEGORIZE = 1, RETURN_RAW = 2
+            };
+    };
 }
-#endif /* ENGINE_H */
+#endif /* DISPATCHER_H */

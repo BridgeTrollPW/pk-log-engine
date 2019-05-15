@@ -4,5 +4,5 @@
 .project
 /.settings/
 .cproject
-/2019.05.06.log
-/2019.05.09.log
+*.log
+/*.log

@@ -2,26 +2,26 @@
 
 Exception::Exception()
 {
-        message = "";
-        code = 0;
+    message = "";
+    code = 0;
 }
 
 std::string Exception::getMessage() const
 {
-        return message;
+    return (message);
 }
 
 void Exception::setMessage(std::string message)
 {
-        this->message = message;
+    this->message = message;
 }
 
 int Exception::getCode() const
 {
-        return code;
+    return (code);
 }
 
 void Exception::setCode(int code)
 {
-        this->code = code;
+    this->code = code;
 }
