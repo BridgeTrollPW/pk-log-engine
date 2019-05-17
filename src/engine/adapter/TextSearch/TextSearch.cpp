@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iterator>
 
+#include "../../../lib/json.hpp"
 #include "../../../lib/MBLib.h"
 #include "../../../util/Exception.h"
 
@@ -30,11 +31,14 @@ namespace engine
 
         void TextSearch::run()
         {
-            auto startTime = std::chrono::high_resolution_clock::now();
+            auto startTime = getEngineTime();
             std::ifstream fileInputStream = getFileInputStream(filePath);
             std::string line;
             int lineCounter = 1;
             int resultCounter = 0;
+
+            nlohmann::json o;
+            std::list<nlohmann::json> j;
 
             while (getline(fileInputStream, line))
             {
@@ -45,29 +49,17 @@ namespace engine
 
                 if (it != end(searchTerms))
                 {
-                    std::cout << line << std::endl;
-                    resultCounter++;
+                    o["lineNumber"] = ++resultCounter;
+                    o["string"] = line;
+                    //j.push_back(o);
+                    std::cout << o << "\n";
+
                 }
                 lineCounter++;
             }
 
-            auto endTime = std::chrono::high_resolution_clock::now();
-            logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " + std::to_string(std::chrono::duration_cast<
-                    std::chrono::milliseconds>(endTime - startTime).count()) + " ms");
-        }
-
-        std::ifstream TextSearch::getFileInputStream(std::string filePath)
-        {
-            std::ifstream logs(filePath, std::ifstream::in);
-            if (!logs.is_open())
-            {
-                throw Exception("Log file cannot be opened", Exception::ExceptionCode::INVALID_LOG_FILE);
-            }
-            else
-            {
-                return (logs);
-            }
-
+            auto endTime = getEngineTime();
+            logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " + getDurationMS(startTime, endTime) + " ms");
         }
     }
 }

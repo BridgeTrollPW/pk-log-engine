@@ -39,7 +39,11 @@ namespace engine
 
             enum ENGINE_FUNCTION
             {
-                SEARCH = 0, SEARCH_AND_CATEGORIZE = 1, RETURN_RAW = 2
+                SEARCH = 0,
+                SEARCH_AND_CATEGORIZE = 1,
+                RETURN_RAW = 2,
+                CLIENT_UPTIME = 3,
+                INTERNAL_OPTIMIZE_ME = 4
             };
     };
 }

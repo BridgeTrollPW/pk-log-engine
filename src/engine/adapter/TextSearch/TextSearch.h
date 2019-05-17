@@ -10,7 +10,7 @@
 #ifndef TEXTSEARCH_H
 #define TEXTSEARCH_H
 
-#include <fstream>
+#include <list>
 #include <string>
 #include <vector>
 
@@ -22,7 +22,7 @@ namespace engine
 {
     namespace adapter
     {
-        class TextSearch: public engine::IEngineAdapter
+        class TextSearch: public IEngineAdapter
         {
             public:
                 TextSearch(std::string filePath, std::string searchTerms);
@@ -48,9 +48,8 @@ namespace engine
 
             protected:
                 ~TextSearch();
-            private:
-                util::Logger logger = util::Logger("TextSearch");
-                std::ifstream getFileInputStream(std::string filePath);
+                private:
+                util::Logger logger = util::Logger(this->getName());
 
                 std::string filePath;
                 std::vector<std::string> searchTerms;
