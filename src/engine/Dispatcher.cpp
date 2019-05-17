@@ -5,6 +5,8 @@
 
 #include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/exceptions/InvalidConfigException.h"
+#include "adapter/ClientUpTime/ClientUpTime.h"
+#include "adapter/OptimizeMe/OptimizeMe.h"
 #include "adapter/TextSearch/TextSearch.h"
 
 namespace engine
@@ -54,15 +56,26 @@ namespace engine
     void Dispatcher::initEngines()
     {
         logger.info("Initializing requested Engine Adapter");
+        //executionList.push_back(new adapter::OptimizeMe());
+        //optimize, do not sync standard input output
+        std::ios_base::sync_with_stdio(false);
+        //optimize, detach console input
+        std::cin.tie(NULL);
+
         switch (engineInput.function)
         {
             case ENGINE_FUNCTION::SEARCH:
-            {
+                {
                 executionList.push_back(new adapter::TextSearch(engineInput.serverLogFile, engineInput.searchStrings));
                 break;
             }
+            case ENGINE_FUNCTION::CLIENT_UPTIME:
+                {
+                executionList.push_back(new adapter::ClientUpTime(engineInput.serverLogFile, engineInput.searchStrings));
+                break;
+            }
             default:
-            {
+                {
                 logger.warn("Engine function " + std::to_string(engineInput.function) + " is not implemented");
                 break;
             }
