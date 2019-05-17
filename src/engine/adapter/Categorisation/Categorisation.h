@@ -5,13 +5,14 @@
 
 namespace engine
 {
-        namespace adapter
+    namespace adapter
+    {
+        class Categorisation: public engine::IEngineAdapter
         {
-                class Categorisation: public engine::IEngineAdapter
-                {
-                };
-        }
-        ;
+                //TODO
+        };
+    }
+    ;
 }
 ;
 #endif
