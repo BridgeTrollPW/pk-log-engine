@@ -9,7 +9,7 @@ using namespace util;
 
 void Logger::log(std::string level, std::string msg)
 {
-    std::ofstream logFile(currentDate() + ".log", std::ios::out | std::ios::app | std::ios::binary);
+    std::ofstream logFile("resources/" + currentDate() + ".log", std::ios::out | std::ios::app | std::ios::binary);
     if (logFile.is_open())
     {
         logFile << "[" << currentDateTime() << "] [" << level << "] " << "[" << className << "]" << " :: " << msg << "\n";

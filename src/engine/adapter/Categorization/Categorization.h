@@ -1,15 +1,51 @@
-#ifndef CATEGORISATION_H
-#define CATEGORISATION_H
+/* Created by BridgeTroll
+ * https://bridgetroll.de
+ * https://steamcommunity.com/id/Bridge_Troll/
+ *
+ * Categorization.h
+ *
+ *  Created on: 18.05.2019
+ *      Author: bt
+ */
+#ifndef CATEGORIZATION_H
+#define CATEGORIZATION_H
 
+#include <list>
+#include <string>
+
+#include "../../Dispatcher.h"
 #include "../../IEngineAdapter.h"
+#include "Rule.h"
 
 namespace engine
 {
     namespace adapter
     {
-        class Categorisation: public engine::IEngineAdapter
+        class Categorization: public engine::IEngineAdapter
         {
-                //TODO
+            public:
+                Categorization();
+                ~Categorization();
+                void run();
+
+                int getEngineFunction() const
+                {
+                    return (Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE);
+                }
+
+                std::string getName() const
+                {
+                    return ("Categorization");
+                }
+
+                std::map<std::string, Rule> getRules() const
+                {
+                    return (rules);
+                }
+
+            private:
+                std::map<std::string, Rule> rules;
+
         };
     }
     ;
