@@ -16,6 +16,7 @@
 struct Connection
 {
         std::string guid;
+        std::string name;
         std::string connectTimeStr;
         std::string disconnectTimeStr = "";
         std::string total;
