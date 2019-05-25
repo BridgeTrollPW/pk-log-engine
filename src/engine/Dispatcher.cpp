@@ -1,12 +1,13 @@
 #include "Dispatcher.h"
 
 #include <fstream>
+#include <iostream>
 #include <string>
 
 #include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/exceptions/InvalidConfigException.h"
+#include "adapter/Categorization/Categorization.h"
 #include "adapter/ClientUpTime/ClientUpTime.h"
-#include "adapter/OptimizeMe/OptimizeMe.h"
 #include "adapter/TextSearch/TextSearch.h"
 
 namespace engine
@@ -67,6 +68,11 @@ namespace engine
             case ENGINE_FUNCTION::SEARCH:
                 {
                 executionList.push_back(new adapter::TextSearch(engineInput.serverLogFile, engineInput.searchStrings));
+                break;
+            }
+            case ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE:
+                {
+                executionList.push_back(new adapter::Categorization());
                 break;
             }
             case ENGINE_FUNCTION::CLIENT_UPTIME:

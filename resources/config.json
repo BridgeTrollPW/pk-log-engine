@@ -1,5 +1,5 @@
 {
-    "version": "0.1",
+    "version": "0.3",
     "maxRequestLines": 500,
     "maxOutputLines": 500,
     "maxCategorisations": 250,

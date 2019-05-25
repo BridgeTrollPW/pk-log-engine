@@ -11,12 +11,14 @@
 #ifndef SRC_ENGINE_ADAPTER_CLIENTUPTIME_CLIENTUPTIME_H_
 #define SRC_ENGINE_ADAPTER_CLIENTUPTIME_CLIENTUPTIME_H_
 
+#include <list>
 #include <string>
 #include <vector>
 
 #include "../../../util/logger/Logger.h"
 #include "../../Dispatcher.h"
 #include "../../IEngineAdapter.h"
+#include "Connection.h"
 
 namespace engine
 {
@@ -43,7 +45,9 @@ namespace engine
             private:
                 std::vector<std::string> playerGuids;
                 std::string filePath;
+                std::string regexString;
                 util::Logger logger = util::Logger(this->getName());
+                std::map<std::string, std::list<Connection>> connections;
 
         };
     }
