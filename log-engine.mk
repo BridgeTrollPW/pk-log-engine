@@ -60,7 +60,7 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/src_engine_Dispatcher.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_engine_Dispatcher.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_logger_Logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_ErrorHandler.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_util_Exception.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(ObjectSuffix)
 
 
 
@@ -138,15 +138,6 @@ $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(DependSuffix
 
 $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix): src/modules/StartRoutine/StartRoutine.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_StartRoutine_StartRoutine.cpp$(PreprocessSuffix) src/modules/StartRoutine/StartRoutine.cpp
-
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix): src/modules/RuleProcessor/RuleProcessor.cpp $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/bt/checkout/log-engine/src/modules/RuleProcessor/RuleProcessor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(DependSuffix) -MM src/modules/RuleProcessor/RuleProcessor.cpp
-
-$(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix): src/modules/RuleProcessor/RuleProcessor.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/src_modules_RuleProcessor_RuleProcessor.cpp$(PreprocessSuffix) src/modules/RuleProcessor/RuleProcessor.cpp
-
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
 ##
