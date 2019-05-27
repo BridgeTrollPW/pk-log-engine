@@ -11,6 +11,7 @@
 #define DISPATCHER_H
 
 #include <list>
+#include <Config.h>
 
 #include "../lib/json.hpp"
 #include "../util/logger/Logger.h"

@@ -11,6 +11,7 @@
 #define LOGGER_H
 
 #include <string>
+#include <Config.h>
 
 namespace util
 {
@@ -21,6 +22,9 @@ namespace util
             Logger(std::string className) :
                     className(className)
             {
+                auto a = Config::getConfig();
+                //path = Config::getConfig().at("core");
+                auto b = "test";
             }
 
             const std::string LEVEL_ERROR = "ERROR";
@@ -39,6 +43,7 @@ namespace util
             std::string currentDate();
 
             std::string className = "Generic";
+            std::string path;
     };
 }
 #endif /* LOGGER_H */

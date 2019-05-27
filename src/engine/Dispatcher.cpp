@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <Config.h>
 
 #include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/exceptions/InvalidConfigException.h"
@@ -26,20 +27,6 @@ namespace engine
     void Dispatcher::validate()
     {
         logger.info("Validating input");
-        std::ifstream i(engineInput.configFile);
-        if (i.fail())
-        {
-            logger.warn("Error loading config file " + engineInput.configFile);
-            logger.warn("Trying default config file");
-            i = std::ifstream("config.json");
-            if (i.fail())
-            {
-                throw InvalidConfigException("Invalid Config", 0);
-            }
-        }
-        i >> configuration;
-        logger.info("Loaded config version " + configuration["version"].get<
-                std::string>());
 
         if (engineInput.serverLogFile == "")
         {
