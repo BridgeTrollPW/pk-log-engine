@@ -12,7 +12,6 @@ namespace engine
         {
             public:
                 int function = -1;
-                Config* config;
                 std::string serverLogFile = "";
                 std::string searchStrings = "";
                 std::string linePairs = "";

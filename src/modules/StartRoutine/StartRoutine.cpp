@@ -13,7 +13,6 @@ using json = nlohmann::json;
 
 StartRoutine::StartRoutine(int argc, char **argv)
 {
-    logger.info("Main started");
     engine::model::EngineInput eIN;
     Config* c;
     for (int i = 1; i < argc; ++i)
@@ -84,7 +83,7 @@ StartRoutine::StartRoutine(int argc, char **argv)
             eIN.prettyPrinting = true;
         }
     }
-    auto a = Config::getConfig();
+    std::string a = Config::getConfig().at("core")["logPath"];
 
     engine::Dispatcher d = engine::Dispatcher(eIN);
 }

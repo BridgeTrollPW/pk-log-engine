@@ -25,7 +25,7 @@ namespace engine
     {
         private:
             model::EngineInput engineInput;
-            util::Logger logger = util::Logger("Dispatcher");
+            util::Logger* logger;
             nlohmann::json configuration;
 
             std::list<IEngineAdapter*> executionList;
