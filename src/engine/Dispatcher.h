@@ -11,6 +11,7 @@
 #define DISPATCHER_H
 
 #include <list>
+#include <Config.h>
 
 #include "../lib/json.hpp"
 #include "../util/logger/Logger.h"
@@ -24,7 +25,7 @@ namespace engine
     {
         private:
             model::EngineInput engineInput;
-            util::Logger logger = util::Logger("Dispatcher");
+            util::Logger* logger;
             nlohmann::json configuration;
 
             std::list<IEngineAdapter*> executionList;

@@ -40,7 +40,7 @@ namespace engine
                 std::ifstream filePtr(filePath, std::ifstream::in);
                 if (!filePtr.is_open())
                 {
-                    throw Exception("Log file cannot be opened", Exception::ExceptionCode::INVALID_LOG_FILE);
+                    throw Exception("File " + filePath + " cannot be opened", Exception::ExceptionCode::INVALID_LOG_FILE);
                 }
                 else
                 {

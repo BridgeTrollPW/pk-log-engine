@@ -7,42 +7,35 @@
 
 using namespace util;
 
-void Logger::log(std::string level, std::string msg)
-{
-    std::ofstream logFile("resources/" + currentDate() + ".log", std::ios::out | std::ios::app | std::ios::binary);
-    if (logFile.is_open())
-    {
-        logFile << "[" << currentDateTime() << "] [" << level << "] " << "[" << className << "]" << " :: " << msg << "\n";
-    }
-    else
-    {
+void Logger::log(std::string level, std::string msg) {
+    std::string logPath = Config::getConfig().at("core")["logPath"];
+    std::ofstream logFile(logPath + "/engine" + currentDate() + ".log", std::ios::out | std::ios::app | std::ios::binary);
+    if (logFile.is_open()) {
+        logFile << "[" << currentDateTime() << "] [" << level << "] " << "[" << className << "]" << " :: " << msg
+                << "\n";
+    } else {
 
     }
     logFile.close();
 }
 
-void Logger::debug(std::string msg)
-{
+void Logger::debug(std::string msg) {
     log(Logger::LEVEL_DEBUG, msg);
 }
 
-void Logger::error(std::string msg)
-{
+void Logger::error(std::string msg) {
     log(Logger::LEVEL_ERROR, msg);
 }
 
-void Logger::info(std::string msg)
-{
+void Logger::info(std::string msg) {
     log(Logger::LEVEL_INFO, msg);
 }
 
-void Logger::warn(std::string msg)
-{
+void Logger::warn(std::string msg) {
     log(Logger::LEVEL_WARN, msg);
 }
 
-std::string Logger::currentDateTime()
-{
+std::string Logger::currentDateTime() {
     time_t now = time(0);
     struct tm tstruct;
     char buf[80];
@@ -53,8 +46,7 @@ std::string Logger::currentDateTime()
     return (buf);
 }
 
-std::string Logger::currentDate()
-{
+std::string Logger::currentDate() {
     time_t now = time(0);
     struct tm tstruct;
     char buf[80];

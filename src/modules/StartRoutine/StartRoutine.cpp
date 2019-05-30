@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <Config.h>
 
 #include "../../engine/Dispatcher.h"
 #include "../../engine/model/EngineInput.h"
@@ -12,9 +13,8 @@ using json = nlohmann::json;
 
 StartRoutine::StartRoutine(int argc, char **argv)
 {
-    logger.info("Main started");
     engine::model::EngineInput eIN;
-
+    Config* c;
     for (int i = 1; i < argc; ++i)
     {
         if (std::string(argv[i]) == "-help" || std::string(argv[i]) == "-h" || std::string(argv[i]) == "-?")
@@ -36,7 +36,9 @@ StartRoutine::StartRoutine(int argc, char **argv)
         {
             if (i + 1 < argc)
             {
-                eIN.configFile = argv[++i];
+                //TODO remove any logs before this point
+                //TODO the logger reads from the Config Class with has a static path variable shared between instances
+                 c = new Config(argv[++i]);
             }
             else
             {
@@ -81,5 +83,7 @@ StartRoutine::StartRoutine(int argc, char **argv)
             eIN.prettyPrinting = true;
         }
     }
+    std::string a = Config::getConfig().at("core")["logPath"];
+
     engine::Dispatcher d = engine::Dispatcher(eIN);
 }

@@ -44,4 +44,4 @@ add_executable(log_engine
         src/util/ErrorHandler.h
         src/util/Exception.cpp
         src/util/Exception.h
-        src/main.cpp)
+        src/main.cpp src/util/Config.h src/util/Config.cpp)

@@ -16,8 +16,6 @@ class StartRoutine
 {
     public:
         StartRoutine(int argc, char **argv);
-    private:
-        util::Logger logger = util::Logger("StartRoutine");
 };
 
 #endif /* STARTROUTINE_H */

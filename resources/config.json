@@ -1,7 +1,16 @@
 {
-    "version": "0.3",
-    "maxRequestLines": 500,
-    "maxOutputLines": 500,
-    "maxCategorisations": 250,
-    "maxCategorisationTimeMS": 10000
+  "core": {
+    "version": "0.4",
+    "logPath": "/home/bt/checkout/log-engine/resources"
+  },
+  "adapters": {
+    "TextSearch": {
+      "maxRequestLines": 500,
+      "maxOutputLines": 500
+    },
+    "Categorization": {
+      "maxCategorisations": 250,
+      "maxCategorisationTimeMS": 10000
+    }
+  }
 }

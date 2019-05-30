@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <Config.h>
 
 #include "../util/exceptions/InvalidArgumentException.h"
 #include "../util/exceptions/InvalidConfigException.h"
@@ -16,7 +17,7 @@ namespace engine
     Dispatcher::Dispatcher(model::EngineInput eIN) :
             engineInput(eIN)
     {
-        logger.info("Starting Engine Dispatcher");
+        logger = new util::Logger("Dispatcher");
         validate();
         initEngines();
         run();
@@ -25,38 +26,25 @@ namespace engine
 
     void Dispatcher::validate()
     {
-        logger.info("Validating input");
-        std::ifstream i(engineInput.configFile);
-        if (i.fail())
-        {
-            logger.warn("Error loading config file " + engineInput.configFile);
-            logger.warn("Trying default config file");
-            i = std::ifstream("config.json");
-            if (i.fail())
-            {
-                throw InvalidConfigException("Invalid Config", 0);
-            }
-        }
-        i >> configuration;
-        logger.info("Loaded config version " + configuration["version"].get<
-                std::string>());
+
+        logger->info("Validating input");
 
         if (engineInput.serverLogFile == "")
         {
-            logger.error("No log file specified");
+            logger->error("No log file specified");
             throw InvalidArgumentException("The log file needs to be specified with the -l/-log CLI parameter", 404);
         }
 
         if (engineInput.function == -1)
         {
-            logger.error("No function was specified to be executed!");
+            logger->error("No function was specified to be executed!");
             throw InvalidArgumentException("The engine function has to be specified by using the -f/-function CLI parameter", 404);
         }
     }
 
     void Dispatcher::initEngines()
     {
-        logger.info("Initializing requested Engine Adapter");
+        logger->info("Initializing requested Engine Adapter");
         //executionList.push_back(new adapter::OptimizeMe());
         //optimize, do not sync standard input output
         std::ios_base::sync_with_stdio(false);
@@ -82,14 +70,14 @@ namespace engine
             }
             default:
                 {
-                logger.warn("Engine function " + std::to_string(engineInput.function) + " is not implemented");
+                logger->warn("Engine function " + std::to_string(engineInput.function) + " is not implemented");
                 break;
             }
         }
 
         for (IEngineAdapter* engine : executionList)
         {
-            logger.info("Loaded " + engine->getName() + " into executionList");
+            logger->info("Loaded " + engine->getName() + " into executionList");
         }
     }
 
@@ -97,15 +85,15 @@ namespace engine
     {
         for (IEngineAdapter* engine : executionList)
         {
-            logger.info("Running " + engine->getName() + " Engine  Adapter");
+            logger->info("Running " + engine->getName() + " Engine  Adapter");
             engine->run();
         }
     }
 
     void Dispatcher::terminate()
     {
-        logger.info("Terminating Engine Routine");
-        logger.info("Engine stopped");
+        logger->info("Terminating Engine Routine");
+        logger->info("Engine stopped");
     }
 }
 ;
