@@ -4,6 +4,13 @@
 This is a simple binary that can search and parse loglines from M&B - Warband servers. The rules can be added via configuration therefore this can be used for any module.
 The default rules are done for the Persistent Kingdoms module
 
+## Adapters
+### TextSearch
+### Categorization
+### MultiIPChecker
+### ClientUpTime
+### OptimizeMe
+
 ## Interface
 ### Examples
 `-c config.json -l log3.txt -f 0 -s Bridge_Troll;RDM;12:32`
