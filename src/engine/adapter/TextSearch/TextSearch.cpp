@@ -42,13 +42,12 @@ namespace engine {
                     return (line.find(s) != std::string::npos);
                 });
 
-                if (it != end(searchTerms))
-                {
-                    o["lineNumber"] = ++resultCounter;
+                if (it != end(searchTerms)) {
+                    o["lineNumber"] = lineCounter;
                     o["string"] = line;
                     //j.push_back(o);
                     std::cout << o << "\n";
-
+                    resultCounter++;
                 }
                 lineCounter++;
             }
