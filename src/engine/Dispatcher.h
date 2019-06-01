@@ -30,13 +30,13 @@ namespace engine
 
             std::list<IEngineAdapter*> executionList;
 
-            void validate();
+            void validate(std::string payload);
             void initEngines();
             void run();
             void terminate();
 
         public:
-            Dispatcher(model::EngineInput eIN);
+            Dispatcher(model::EngineInput eIN, std::string payload);
 
             enum ENGINE_FUNCTION
             {

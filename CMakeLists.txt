@@ -44,4 +44,4 @@ add_executable(log_engine
         src/util/ErrorHandler.h
         src/util/Exception.cpp
         src/util/Exception.h
-        src/main.cpp src/util/Config.h src/util/Config.cpp)
+        src/main.cpp src/util/Config.h src/util/Config.cpp src/engine/model/Payload.h src/engine/adapter/TextSearch/TextSearchPayload.h src/engine/adapter/TextSearch/TextSearchPayloadSerializer.h)

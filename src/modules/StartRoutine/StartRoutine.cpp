@@ -14,6 +14,7 @@ using json = nlohmann::json;
 StartRoutine::StartRoutine(int argc, char **argv)
 {
     engine::model::EngineInput eIN;
+    std::string payload;
     Config* c;
     for (int i = 1; i < argc; ++i)
     {
@@ -56,34 +57,23 @@ StartRoutine::StartRoutine(int argc, char **argv)
                 throw InvalidArgumentException("-log/-l option requires one argument.", 1);
             }
         }
-        else if (std::string(argv[i]) == "-search" || std::string(argv[i]) == "-s")
-        {
-            if (i + 1 < argc)
-            {
-                eIN.searchStrings = argv[++i];
-            }
-            else
-            {
-                throw InvalidArgumentException("-search/-s option requires one argument.", 1);
-            }
-        }
-        else if (std::string(argv[i]) == "-lines" || std::string(argv[i]) == "-ls")
-        {
-            if (i + 1 < argc)
-            {
-                eIN.linePairs = argv[++i];
-            }
-            else
-            {
-                throw InvalidArgumentException("-lines/-ls option requires one argument.", 1);
-            }
-        }
-        else if (std::string(argv[i]) == "-pretty-printing" || std::string(argv[i]) == "-p")
+        else if (std::string(argv[i]) == "-pretty-printing" || std::string(argv[i]) == "-pp")
         {
             eIN.prettyPrinting = true;
+        }
+        else if (std::string(argv[i]) == "-payload" || std::string(argv[i]) == "-p")
+        {
+            if (i + 1 < argc)
+            {
+                payload =argv[++i];
+            }
+            else
+            {
+                throw InvalidArgumentException("-payload/-p option requires one argument.", 1);
+            }
         }
     }
     std::string a = Config::getConfig().at("core")["logPath"];
 
-    engine::Dispatcher d = engine::Dispatcher(eIN);
+    engine::Dispatcher d = engine::Dispatcher(eIN, payload);
 }

@@ -2,6 +2,7 @@
 #define ENGINEINPUT_H
 
 #include <string>
+#include "Payload.h"
 
 namespace engine
 {
@@ -13,8 +14,7 @@ namespace engine
             public:
                 int function = -1;
                 std::string serverLogFile = "";
-                std::string searchStrings = "";
-                std::string linePairs = "";
+                std::string payload;
                 bool prettyPrinting = false;
         };
     }

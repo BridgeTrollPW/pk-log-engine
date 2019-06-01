@@ -8,29 +8,26 @@
 #include "../../../lib/json.hpp"
 #include "../../../lib/MBLib.h"
 #include "../../../util/Exception.h"
+#include "TextSearchPayload.h"
 
-namespace engine
-{
-    namespace adapter
-    {
-        TextSearch::TextSearch(std::string filePath, std::string searchTerms) :
-                filePath(filePath)
-        {
+
+namespace engine {
+    namespace adapter {
+        TextSearch::TextSearch(std::string filePath, const TextSearchPayload payload) :
+                filePath(filePath) {
             logger.info("Starting TextSearch Adapter");
-            this->searchTerms = MBKingdoms::Lib::explode(searchTerms, ';');
-            if (this->searchTerms.empty())
-            {
+            this->searchTerms = payload.searchTerms;
+            //this->searchTerms
+            if (this->searchTerms.empty()) {
                 throw Exception("No search terms were found", Exception::ExceptionCode::NO_SEARCHTERMS_PRESENT);
             }
             logger.debug("Got " + std::to_string(this->searchTerms.size()) + " search terms : " + searchTerms);
         }
 
-        TextSearch::~TextSearch()
-        {
+        TextSearch::~TextSearch() {
         }
 
-        void TextSearch::run()
-        {
+        void TextSearch::run() {
             auto startTime = getEngineTime();
             std::ifstream fileInputStream = getFileInputStream(filePath);
             std::string line;
@@ -40,10 +37,8 @@ namespace engine
             nlohmann::json o;
             std::list<nlohmann::json> j;
 
-            while (getline(fileInputStream, line))
-            {
-                auto it = std::find_if(begin(searchTerms), end(searchTerms), [&](const std::string& s)
-                {
+            while (getline(fileInputStream, line)) {
+                auto it = std::find_if(begin(searchTerms), end(searchTerms), [&](const std::string &s) {
                     return (line.find(s) != std::string::npos);
                 });
 
@@ -59,7 +54,8 @@ namespace engine
             }
 
             auto endTime = getEngineTime();
-            logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " + getDurationMS(startTime, endTime) + " ms");
+            logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " +
+                        getDurationMS(startTime, endTime) + " ms");
         }
     }
 }

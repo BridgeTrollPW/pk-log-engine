@@ -17,42 +17,40 @@
 #include "../../../util/logger/Logger.h"
 #include "../../Dispatcher.h"
 #include "../../IEngineAdapter.h"
+#include "TextSearchPayload.h"
 
-namespace engine
-{
-    namespace adapter
-    {
-        class TextSearch: public IEngineAdapter
-        {
-            public:
-                TextSearch(std::string filePath, std::string searchTerms);
-                TextSearch(std::string filePath, std::string searchTerms, std::list<
-                        std::string> ouputBuffer);
-                /**
-                 * get Engine name as string
-                 * immutable
-                 */
-                std::string getName() const
-                {
-                    return ("TextSearch");
-                }
-                /**
-                 * get engine function as integer value
-                 * immutable
-                 */
-                int getEngineFunction() const
-                {
-                    return (Dispatcher::ENGINE_FUNCTION::SEARCH);
-                }
-                void run();
+namespace engine {
+    namespace adapter {
+        class TextSearch : public IEngineAdapter {
+        public:
+            TextSearch(std::string filePath, const TextSearchPayload payload);
 
-            protected:
-                ~TextSearch();
-                private:
-                util::Logger logger = util::Logger(this->getName());
+            /**
+             * get Engine name as string
+             * immutable
+             */
+            std::string getName() const {
+                return ("TextSearch");
+            }
 
-                std::string filePath;
-                std::vector<std::string> searchTerms;
+            /**
+             * get engine function as integer value
+             * immutable
+             */
+            int getEngineFunction() const {
+                return (Dispatcher::ENGINE_FUNCTION::SEARCH);
+            }
+
+            void run();
+
+        protected:
+            ~TextSearch();
+
+        private:
+            util::Logger logger = util::Logger(this->getName());
+
+            std::string filePath;
+            std::vector<std::string> searchTerms;
         };
     }
 }

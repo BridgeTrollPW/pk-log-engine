@@ -1,8 +1,10 @@
 # Log-Engine
 
 ### Description
-This is a simple binary that can search and parse loglines from M&B - Warband servers. The rules can be added via configuration therefore this can be used for any module.
-The default rules are done for the Persistent Kingdoms module
+At it's core, this is a simple binary that can search and parse loglines from M&B - Warband servers.
+There are different Engine Adapters that server different purposes and handle the logs in different ways.
+In general, the log-engine was designed to be used for administrative purposes and to be integrated in a server backend system.
+Therefore special care went into performance for log search. If administrative tasks need to be performed in dependency to log file analysis, it should not take long to get the desired data to work with 
 
 ## Adapters
 ### TextSearch
@@ -10,12 +12,10 @@ The default rules are done for the Persistent Kingdoms module
 ### MultiIPChecker
 ### ClientUpTime
 ### OptimizeMe
+### PatternAbuser
+
 
 ## Interface
-### Examples
-`-c config.json -l log3.txt -f 0 -s Bridge_Troll;RDM;12:32`
-
-This will search the whole log file and return log lines that contain either Bridge_Troll, RDM and/or 12:32
 ### Input: CLI
 `-c , -config`
 >This specifies the Configuration File. Best is if you use absolute paths like `-c /srv/www/myServerBackend/log-engine/config.json`
@@ -32,6 +32,33 @@ This will search the whole log file and return log lines that contain either Bri
 `-ls , -lines`
 >Specifies to only search between certain line numbers in the format `-ls start;end`
 
-`-p , -pretty-printing`
+`-pp , -pretty-printing`
 >output the json as pretty printed or as raw unformatted json string
+
+`-p , -payload`
+>pass additional input to the requested engine adapter. This has to be a specific json string in order for the engine to recognize and parse your input
 ### Output: JSON
+
+## Implementation Examples
+### JavaScript + Nodejs
+```objectivec
+const { spawn } = require('child_process');
+const child = spawn('./log_engine', [
+    '-c', 'resources/config.json', 
+    '-l', 'resources/logs.txt', 
+    '-f', '0', 
+    '-s', '2842835;41.248.17.186'
+]);
+
+child.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+});
+
+child.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
+});
+
+child.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+});
+```
