@@ -8,7 +8,6 @@
 #include <string>
 #include <json.hpp>
 #include <fstream>
-#include "Exception.h"
 
 class Config {
 private:
@@ -17,13 +16,12 @@ public:
     Config(std::string filePath) {
         std::ifstream cfgFile(filePath, std::ifstream::in);
         if (!cfgFile.is_open()) {
-            throw Exception("Config cannot be loaded", Exception::ExceptionCode::INVALID_LOG_FILE);
+            throw std::system_error(std::error_code(404, std::system_category()), "Config cannot be loaded");
         }
         cfgFile >> json;
     }
 
-    static nlohmann::json getConfig()
-    {
+    static nlohmann::json getConfig() {
         return json;
     }
 };

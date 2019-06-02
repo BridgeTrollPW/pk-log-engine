@@ -15,19 +15,16 @@
 #include <iterator>
 
 #include "../../../lib/MBLib.h"
-#include "../../../util/Exception.h"
 #include "../Categorization/Categorization.h"
 #include "../Categorization/Rule.h"
 
 using namespace engine::adapter;
 
 ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
-        filePath(filePath)
-{
+        filePath(filePath) {
     playerGuids = MBKingdoms::Lib::explode(searchTerms, ';');
-    if (playerGuids.empty())
-    {
-        throw Exception("No guids to search for were specified", Exception::ExceptionCode::NO_SEARCHTERMS_PRESENT);
+    if (playerGuids.empty()) {
+        throw std::system_error(std::error_code(404, std::system_category()), "No guids to search for were specified");
     }
 
     Categorization categorisation = Categorization();
@@ -36,30 +33,24 @@ ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
 
 }
 
-ClientUpTime::~ClientUpTime()
-{
+ClientUpTime::~ClientUpTime() {
 }
 
-void ClientUpTime::run()
-{
+void ClientUpTime::run() {
     auto startTime = getEngineTime();
     int resultCounter = 0;
     int lineCounter = 1;
     std::string line;
     std::ifstream fileInputStream = getFileInputStream(filePath);
 
-    while (getline(fileInputStream, line))
-    {
-        if (line.find("has GUID:") != std::string::npos)
-        {
+    while (getline(fileInputStream, line)) {
+        if (line.find("has GUID:") != std::string::npos) {
 
-            auto it = std::find_if(begin(playerGuids), end(playerGuids), [&](const std::string& s) -> bool
-            {
+            auto it = std::find_if(begin(playerGuids), end(playerGuids), [&](const std::string &s) -> bool {
                 return (line.find(s) != std::string::npos);
             });
 
-            if (it != end(playerGuids))
-            {
+            if (it != end(playerGuids)) {
                 std::cout << "Connected:: " << line << "\n";
 
             }
@@ -70,7 +61,8 @@ void ClientUpTime::run()
 
     }
     auto endTime = getEngineTime();
-    logger.info("ClientUpTime run finished with " + std::to_string(resultCounter) + " found results. Took " + getDurationMS(startTime, endTime) + " ms");
+    logger.info("ClientUpTime run finished with " + std::to_string(resultCounter) + " found results. Took " +
+                getDurationMS(startTime, endTime) + " ms");
 
 }
 

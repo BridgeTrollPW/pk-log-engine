@@ -1,4 +1,3 @@
-#include <exceptions/InvalidArgumentException.h>
 #include <adapter/TextSearch/TextSearchPayload.h>
 #include <adapter/TextSearch/TextSearchPayloadSerializer.h>
 #include <adapter/TextSearch/TextSearch.h>
@@ -23,13 +22,14 @@ namespace engine {
 
         if (engineInput.serverLogFile == "") {
             logger->error("No log file specified");
-            throw InvalidArgumentException("The log file needs to be specified with the -l/-log CLI parameter", 404);
+            throw std::system_error(std::error_code(404, std::system_category()),
+                                    "The log file needs to be specified with the -l/-log CLI parameter");
         }
 
         if (engineInput.function == -1) {
             logger->error("No function was specified to be executed!");
-            throw InvalidArgumentException(
-                    "The engine function has to be specified by using the -f/-function CLI parameter", 404);
+            throw std::system_error(std::error_code(404, std::system_category()),
+                                    "The engine function has to be specified by using the -f/-function CLI parameter");
         }
         engineInput.payload = payload;
     }

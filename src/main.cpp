@@ -2,7 +2,6 @@
 
 #include "modules/StartRoutine/StartRoutine.h"
 #include "util/ErrorHandler.h"
-#include "util/Exception.h"
 
 int main(int argc, char **argv)
 {
@@ -10,7 +9,7 @@ int main(int argc, char **argv)
     {
         StartRoutine s(argc, argv);
     }
-    catch (Exception& e)
+    catch (std::system_error& e)
     {
         ErrorHandler handler;
         return (handler.processException(e));

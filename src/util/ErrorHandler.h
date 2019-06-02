@@ -10,13 +10,12 @@
 #ifndef ERROR_HANDLER_H
 #define ERROR_HANDLER_H
 
-#include "Exception.h"
 #include "logger/Logger.h"
 
 class ErrorHandler
 {
     public:
-        int processException(Exception exception);
+        int processException(std::system_error exception);
     private:
         util::Logger logger = util::Logger("ErrorHandler");
 };

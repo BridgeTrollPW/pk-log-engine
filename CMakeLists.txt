@@ -36,12 +36,8 @@ add_executable(log_engine
         src/lib/MBLib.h
         src/modules/StartRoutine/StartRoutine.cpp
         src/modules/StartRoutine/StartRoutine.h
-        src/util/exceptions/InvalidArgumentException.h
-        src/util/exceptions/InvalidConfigException.h
         src/util/logger/Logger.cpp
         src/util/logger/Logger.h
         src/util/ErrorHandler.cpp
         src/util/ErrorHandler.h
-        src/util/Exception.cpp
-        src/util/Exception.h
         src/main.cpp src/util/Config.h src/util/Config.cpp src/engine/model/Payload.h src/engine/adapter/TextSearch/TextSearchPayload.h src/engine/adapter/TextSearch/TextSearchPayloadSerializer.h)
