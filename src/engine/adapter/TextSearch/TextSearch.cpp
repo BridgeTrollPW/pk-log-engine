@@ -7,7 +7,6 @@
 
 #include "../../../lib/json.hpp"
 #include "../../../lib/MBLib.h"
-#include "../../../util/Exception.h"
 #include "TextSearchPayload.h"
 
 
@@ -19,9 +18,14 @@ namespace engine {
             this->searchTerms = payload.searchTerms;
             //this->searchTerms
             if (this->searchTerms.empty()) {
-                throw Exception("No search terms were found", Exception::ExceptionCode::NO_SEARCHTERMS_PRESENT);
+                throw std::system_error(std::error_code(404, std::system_category()), "No search terms were found");
             }
-            logger.debug("Got " + std::to_string(this->searchTerms.size()) + " search terms : " + searchTerms);
+            std::string searchString;
+            std::for_each(searchTerms.begin(), searchTerms.end(), [&searchString](std::string &st) -> void {
+                searchString += (st + ";");
+            });
+
+            logger.debug("Got " + std::to_string(this->searchTerms.size()) + " search terms : " + searchString);
         }
 
         TextSearch::~TextSearch() {

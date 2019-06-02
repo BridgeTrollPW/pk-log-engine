@@ -15,8 +15,6 @@
 #include <fstream>
 #include <string>
 
-#include "../util/Exception.h"
-
 namespace engine
 {
     using engineTime = std::chrono::time_point<std::chrono::system_clock,std::chrono::nanoseconds>;
@@ -40,7 +38,7 @@ namespace engine
                 std::ifstream filePtr(filePath, std::ifstream::in);
                 if (!filePtr.is_open())
                 {
-                    throw Exception("File " + filePath + " cannot be opened", Exception::ExceptionCode::INVALID_LOG_FILE);
+                    throw std::system_error(std::error_code(404, std::system_category()),"File " + filePath + " cannot be opened");
                 }
                 else
                 {

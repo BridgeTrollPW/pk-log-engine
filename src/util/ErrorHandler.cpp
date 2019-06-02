@@ -4,10 +4,10 @@
 #include <string>
 #include <typeinfo>
 
-int ErrorHandler::processException(Exception exception)
+int ErrorHandler::processException(std::system_error exception)
 {
         std::stringstream ss;
-        ss << typeid(exception).name() << " -> " << exception.getMessage();
+        ss << typeid(exception).name() << " -> " << exception.what();
         logger.error(ss.str());
-        return (exception.getCode());
+        return exception.code().value();
 }
