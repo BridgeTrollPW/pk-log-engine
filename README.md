@@ -2,7 +2,7 @@
 
 ### Description
 At it's core, this is a simple binary that can search and parse loglines from M&B - Warband servers.
-There are different Engine Adapters that server different purposes and handle the logs in different ways.
+There are different Engine Adapters that serve different purposes and handle the logs in different ways.
 In general, the log-engine was designed to be used for administrative purposes and to be integrated in a server backend system.
 Therefore special care went into performance for log search. If administrative tasks need to be performed in dependency to log file analysis, it should not take long to get the desired data to work with 
 
