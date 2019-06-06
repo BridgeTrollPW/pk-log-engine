@@ -23,13 +23,13 @@ namespace engine {
     namespace adapter {
         class TextSearch : public IEngineAdapter {
         public:
-            TextSearch(std::string filePath, const TextSearchPayload payload);
+            TextSearch(std::string filePath, const TextSearchPayload &payload);
 
             /**
              * get Engine name as string
              * immutable
              */
-            std::string getName() const {
+            std::string getName() const override {
                 return ("TextSearch");
             }
 
@@ -37,14 +37,14 @@ namespace engine {
              * get engine function as integer value
              * immutable
              */
-            int getEngineFunction() const {
+            int getEngineFunction() const override {
                 return (Dispatcher::ENGINE_FUNCTION::SEARCH);
             }
 
-            void run();
+            void run() override;
 
         protected:
-            ~TextSearch();
+            ~TextSearch() override;
 
         private:
             util::Logger logger = util::Logger(this->getName());

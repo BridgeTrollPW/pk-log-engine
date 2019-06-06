@@ -1,3 +1,5 @@
+#include <utility>
+
 #include "TextSearch.h"
 
 #include <algorithm>
@@ -12,8 +14,8 @@
 
 namespace engine {
     namespace adapter {
-        TextSearch::TextSearch(std::string filePath, const TextSearchPayload payload) :
-                filePath(filePath) {
+        TextSearch::TextSearch(std::string filePath, const TextSearchPayload& payload) :
+                filePath(std::move(filePath)) {
             logger.info("Starting TextSearch Adapter");
             this->searchTerms = payload.searchTerms;
             //this->searchTerms
@@ -28,8 +30,7 @@ namespace engine {
             logger.debug("Got " + std::to_string(this->searchTerms.size()) + " search terms : " + searchString);
         }
 
-        TextSearch::~TextSearch() {
-        }
+        TextSearch::~TextSearch() = default;
 
         void TextSearch::run() {
             auto startTime = getEngineTime();

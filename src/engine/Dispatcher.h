@@ -44,7 +44,8 @@ namespace engine
                 SEARCH_AND_CATEGORIZE = 1,
                 RETURN_RAW = 2,
                 CLIENT_UPTIME = 3,
-                INTERNAL_OPTIMIZE_ME = 4
+                INTERNAL_OPTIMIZE_ME = 4,
+                PATTERN_ABUSER = 5
             };
     };
 }
