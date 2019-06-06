@@ -25,15 +25,15 @@ namespace engine
         {
             public:
                 Categorization();
-                ~Categorization();
-                void run();
+                ~Categorization() override;
+                void run() override;
 
-                int getEngineFunction() const
+                int getEngineFunction() const override
                 {
                     return (Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE);
                 }
 
-                std::string getName() const
+                std::string getName() const override
                 {
                     return ("Categorization");
                 }
