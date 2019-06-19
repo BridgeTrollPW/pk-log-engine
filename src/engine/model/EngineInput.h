@@ -2,22 +2,14 @@
 #define ENGINEINPUT_H
 
 #include <string>
-#include "Payload.h"
 
-namespace engine
+struct EngineInput
 {
-    namespace model
-    {
-
-        struct EngineInput
-        {
-            public:
-                int function = -1;
-                std::string serverLogFile = "";
-                std::string payload;
-                bool prettyPrinting = false;
-        };
-    }
-}
+public:
+    int function = -1;
+    std::string serverLogFile = "";
+    std::string payload;
+    std::string configPath = "";
+    bool prettyPrinting = false;
+};
 #endif /* ENGINEINPUT_H */
-

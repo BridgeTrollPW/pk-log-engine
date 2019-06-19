@@ -13,8 +13,6 @@
 #include <iostream>
 #include <map>
 
-#include "../../../lib/json.hpp"
-
 using namespace engine::adapter;
 
 Categorization::Categorization()

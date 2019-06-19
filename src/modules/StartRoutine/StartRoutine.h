@@ -14,8 +14,8 @@
 
 class StartRoutine
 {
-    public:
-        StartRoutine(int argc, char **argv);
+public:
+    explicit StartRoutine(const std::string &stdInput);
 };
 
 #endif /* STARTROUTINE_H */

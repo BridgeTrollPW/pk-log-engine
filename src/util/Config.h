@@ -13,7 +13,7 @@ class Config {
 private:
     static nlohmann::json json;
 public:
-    Config(std::string filePath) {
+    explicit Config(const std::string &filePath) {
         std::ifstream cfgFile(filePath, std::ifstream::in);
         if (!cfgFile.is_open()) {
             throw std::system_error(std::error_code(404, std::system_category()), "Config cannot be loaded");

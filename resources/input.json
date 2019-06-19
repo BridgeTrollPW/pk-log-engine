@@ -1,0 +1,11 @@
+{
+  "function": 0,
+  "configFile": "/home/bt/checkout/log-engine/resources/config.json",
+  "serverLogFile": "/home/bt/checkout/log-engine/resources/logs.txt",
+  "payload": {
+    "searchTerms": [
+      "Cheese"
+    ]
+  },
+  "prettyPrinting": false
+}

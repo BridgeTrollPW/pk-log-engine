@@ -5,14 +5,16 @@
 
 int main(int argc, char **argv)
 {
+    std::istreambuf_iterator<char> begin(std::cin), end;
+    std::string rawInput(begin, end);
     try
     {
-        StartRoutine s(argc, argv);
+        StartRoutine s(rawInput);
     }
-    catch (std::system_error& e)
+    catch (std::system_error &e)
     {
         ErrorHandler handler;
         return (handler.processException(e));
     }
-    return (0);
+    return 0;
 }

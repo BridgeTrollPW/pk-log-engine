@@ -23,30 +23,33 @@ namespace engine
 
     class Dispatcher
     {
-        private:
-            model::EngineInput engineInput;
-            util::Logger* logger;
-            nlohmann::json configuration;
+    private:
+        EngineInput engineInput;
+        util::Logger *logger;
+        nlohmann::json configuration;
 
-            std::list<IEngineAdapter*> executionList;
+        std::list<IEngineAdapter *> executionList;
 
-            void validate(std::string payload);
-            void initEngines();
-            void run();
-            void terminate();
+        void validate(const std::string &payload);
 
-        public:
-            Dispatcher(model::EngineInput eIN, std::string payload);
+        void initEngines();
 
-            enum ENGINE_FUNCTION
-            {
-                SEARCH = 0,
-                SEARCH_AND_CATEGORIZE = 1,
-                RETURN_RAW = 2,
-                CLIENT_UPTIME = 3,
-                INTERNAL_OPTIMIZE_ME = 4,
-                PATTERN_ABUSER = 5
-            };
+        void run();
+
+        void terminate();
+
+    public:
+        explicit Dispatcher(EngineInput eIN);
+
+        enum ENGINE_FUNCTION
+        {
+            SEARCH = 0,
+            SEARCH_AND_CATEGORIZE = 1,
+            RETURN_RAW = 2,
+            CLIENT_UPTIME = 3,
+            INTERNAL_OPTIMIZE_ME = 4,
+            PATTERN_ABUSER = 5
+        };
     };
 }
 #endif /* DISPATCHER_H */
