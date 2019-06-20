@@ -4,10 +4,14 @@
 
 #include "PatternAbuser.h"
 
-void engine::adapter::PatternAbuser::run() {
+using namespace adapter;
+
+void PatternAbuser::run()
+{
 
 }
 
-engine::adapter::PatternAbuser::~PatternAbuser() {
+PatternAbuser::~PatternAbuser()
+{
 
 }

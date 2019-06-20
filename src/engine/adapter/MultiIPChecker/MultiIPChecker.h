@@ -13,17 +13,16 @@
 
 #include "../../IEngineAdapter.h"
 
-namespace engine
+
+namespace adapter
 {
-    namespace adapter
+    class MultiIPChecker : public IEngineAdapter
     {
-        class MultiIPChecker: public IEngineAdapter
-        {
-                //TODO: Check for multiple IPs that use the same GUID and vice versa
-                //TODO: Detect multiple GUIDs for one single IP
-                //TODO: GeoLocation checking via open web api in parallel(non-blocking) thread ???
-        };
-    }
+        //TODO: Check for multiple IPs that use the same GUID and vice versa
+        //TODO: Detect multiple GUIDs for one single IP
+        //TODO: GeoLocation checking via open web api in parallel(non-blocking) thread ???
+    };
 }
+
 
 #endif /* SRC_ENGINE_ADAPTER_MULTIIPCHECKER_MULTIIPCHECKER_H_ */

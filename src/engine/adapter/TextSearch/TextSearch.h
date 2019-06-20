@@ -19,39 +19,43 @@
 #include "../../IEngineAdapter.h"
 #include "TextSearchPayload.h"
 
-namespace engine {
-    namespace adapter {
-        class TextSearch : public IEngineAdapter {
-        public:
-            TextSearch(std::string filePath, const TextSearchPayload &payload);
 
-            /**
-             * get Engine name as string
-             * immutable
-             */
-            std::string getName() const override {
-                return ("TextSearch");
-            }
+namespace adapter
+{
+    class TextSearch : public IEngineAdapter
+    {
+    public:
+        TextSearch(std::string filePath, const TextSearchPayload &payload);
 
-            /**
-             * get engine function as integer value
-             * immutable
-             */
-            int getEngineFunction() const override {
-                return (Dispatcher::ENGINE_FUNCTION::SEARCH);
-            }
+        /**
+         * get Engine name as string
+         * immutable
+         */
+        std::string getName() const override
+        {
+            return ("TextSearch");
+        }
 
-            void run() override;
+        /**
+         * get engine function as integer value
+         * immutable
+         */
+        int getEngineFunction() const override
+        {
+            return (Dispatcher::ENGINE_FUNCTION::SEARCH);
+        }
 
-        protected:
-            ~TextSearch() override;
+        void run() override;
 
-        private:
-            util::Logger logger = util::Logger(this->getName());
+    protected:
+        ~TextSearch() override;
 
-            std::string filePath;
-            std::vector<std::string> searchTerms;
-        };
-    }
+    private:
+        util::Logger logger = util::Logger(this->getName());
+
+        std::string filePath;
+        std::vector<std::string> searchTerms;
+    };
 }
+
 #endif

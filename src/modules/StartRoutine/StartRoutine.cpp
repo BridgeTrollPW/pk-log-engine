@@ -21,5 +21,5 @@ StartRoutine::StartRoutine(const std::string &stdInput)
     EngineInput eIN = jsonHND.get<EngineInput>();
     c = new Config(eIN.configPath);
 
-    engine::Dispatcher d = engine::Dispatcher(eIN);
+    Dispatcher d = Dispatcher(eIN);
 }

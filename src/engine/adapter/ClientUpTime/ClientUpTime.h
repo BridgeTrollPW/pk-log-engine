@@ -20,36 +20,37 @@
 #include "../../IEngineAdapter.h"
 #include "Connection.h"
 
-namespace engine
+
+namespace adapter
 {
-    namespace adapter
+
+    class ClientUpTime : public IEngineAdapter
     {
+    public:
+        ClientUpTime(std::string filePath, std::string searchTerms);
 
-        class ClientUpTime: public IEngineAdapter
+        ~ClientUpTime();
+
+        void run();
+
+        int getEngineFunction() const
         {
-            public:
-                ClientUpTime(std::string filePath, std::string searchTerms);
-                ~ClientUpTime();
-                void run();
+            return (Dispatcher::ENGINE_FUNCTION::CLIENT_UPTIME);
+        }
 
-                int getEngineFunction() const
-                {
-                    return (Dispatcher::ENGINE_FUNCTION::CLIENT_UPTIME);
-                }
+        std::string getName() const
+        {
+            return ("ClientUpTime");
+        }
 
-                std::string getName() const
-                {
-                    return ("ClientUpTime");
-                }
+    private:
+        std::vector<std::string> playerGuids;
+        std::string filePath;
+        std::string regexString;
+        util::Logger logger = util::Logger(this->getName());
+        std::map<std::string, std::list<Connection>> connections;
 
-            private:
-                std::vector<std::string> playerGuids;
-                std::string filePath;
-                std::string regexString;
-                util::Logger logger = util::Logger(this->getName());
-                std::map<std::string, std::list<Connection>> connections;
-
-        };
-    }
+    };
 }
+
 #endif /* SRC_ENGINE_ADAPTER_CLIENTUPTIME_CLIENTUPTIME_H_ */

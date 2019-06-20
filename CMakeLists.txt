@@ -47,4 +47,4 @@ add_executable(log_engine
         src/engine/adapter/TextSearch/TextSearchPayload.h
         src/engine/adapter/TextSearch/TextSearchPayloadSerializer.h
         src/engine/adapter/PatternAbuser/PatternAbuser.cpp
-        src/engine/adapter/PatternAbuser/PatternAbuser.h)
+        src/engine/adapter/PatternAbuser/PatternAbuser.h src/engine/OutputWrapper.cpp src/engine/OutputWrapper.h)

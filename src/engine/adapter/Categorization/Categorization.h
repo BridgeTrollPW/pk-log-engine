@@ -17,40 +17,39 @@
 #include "../../IEngineAdapter.h"
 #include "Rule.h"
 
-namespace engine
+
+namespace adapter
 {
-    namespace adapter
+    class Categorization : public IEngineAdapter
     {
-        class Categorization: public engine::IEngineAdapter
+    public:
+        Categorization();
+
+        ~Categorization() override;
+
+        void run() override;
+
+        int getEngineFunction() const override
         {
-            public:
-                Categorization();
-                ~Categorization() override;
-                void run() override;
+            return (Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE);
+        }
 
-                int getEngineFunction() const override
-                {
-                    return (Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE);
-                }
+        std::string getName() const override
+        {
+            return ("Categorization");
+        }
 
-                std::string getName() const override
-                {
-                    return ("Categorization");
-                }
+        std::map<std::string, Rule> getRules() const
+        {
+            return (rules);
+        }
 
-                std::map<std::string, Rule> getRules() const
-                {
-                    return (rules);
-                }
+    private:
+        std::map<std::string, Rule> rules;
 
-            private:
-                std::map<std::string, Rule> rules;
-
-        };
-    }
-    ;
+    };
 }
-;
+
 #endif
 
 /**

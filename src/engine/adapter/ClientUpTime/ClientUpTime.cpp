@@ -18,12 +18,14 @@
 #include "../Categorization/Categorization.h"
 #include "../Categorization/Rule.h"
 
-using namespace engine::adapter;
+using namespace adapter;
 
 ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
-        filePath(filePath) {
+        filePath(filePath)
+{
     playerGuids = MBKingdoms::Lib::explode(searchTerms, ';');
-    if (playerGuids.empty()) {
+    if (playerGuids.empty())
+    {
         throw std::system_error(std::error_code(404, std::system_category()), "No guids to search for were specified");
     }
 
@@ -33,24 +35,30 @@ ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
 
 }
 
-ClientUpTime::~ClientUpTime() {
+ClientUpTime::~ClientUpTime()
+{
 }
 
-void ClientUpTime::run() {
+void ClientUpTime::run()
+{
     auto startTime = getEngineTime();
     int resultCounter = 0;
     int lineCounter = 1;
     std::string line;
     std::ifstream fileInputStream = getFileInputStream(filePath);
 
-    while (getline(fileInputStream, line)) {
-        if (line.find("has GUID:") != std::string::npos) {
+    while (getline(fileInputStream, line))
+    {
+        if (line.find("has GUID:") != std::string::npos)
+        {
 
-            auto it = std::find_if(begin(playerGuids), end(playerGuids), [&](const std::string &s) -> bool {
+            auto it = std::find_if(begin(playerGuids), end(playerGuids), [&](const std::string &s) -> bool
+            {
                 return (line.find(s) != std::string::npos);
             });
 
-            if (it != end(playerGuids)) {
+            if (it != end(playerGuids))
+            {
                 std::cout << "Connected:: " << line << "\n";
 
             }

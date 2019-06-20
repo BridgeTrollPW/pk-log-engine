@@ -8,35 +8,38 @@
 #include <Dispatcher.h>
 #include "../../IEngineAdapter.h"
 
-namespace engine {
-    namespace adapter {
-        class PatternAbuser : public IEngineAdapter {
-        public:
-            /**
-             * get Engine name as string
-             * immutable
-             */
-            std::string getName() const override {
-                return ("PatternAbuser");
-            }
 
-            /**
-             * get engine function as integer value
-             * immutable
-             * */
-            int getEngineFunction() const override {
-                return (Dispatcher::ENGINE_FUNCTION::PATTERN_ABUSER);
-            }
+namespace adapter
+{
+    class PatternAbuser : public IEngineAdapter
+    {
+    public:
+        /**
+         * get Engine name as string
+         * immutable
+         */
+        std::string getName() const override
+        {
+            return ("PatternAbuser");
+        }
 
-            void run() override;
+        /**
+         * get engine function as integer value
+         * immutable
+         * */
+        int getEngineFunction() const override
+        {
+            return (Dispatcher::ENGINE_FUNCTION::PATTERN_ABUSER);
+        }
 
-        protected:
-            ~PatternAbuser() override;
+        void run() override;
 
-        private:
-            util::Logger logger = util::Logger(this->getName());
-        };
-    }
+    protected:
+        ~PatternAbuser() override;
+
+    private:
+        util::Logger logger = util::Logger(this->getName());
+    };
 }
 
 

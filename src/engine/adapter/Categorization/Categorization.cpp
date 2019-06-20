@@ -13,7 +13,7 @@
 #include <iostream>
 #include <map>
 
-using namespace engine::adapter;
+using namespace adapter;
 
 Categorization::Categorization()
 {
@@ -21,13 +21,13 @@ Categorization::Categorization()
     nlohmann::json tempRules;
     getFileInputStream("resources/rules.json") >> tempRules;
 
-    for (const auto& el : tempRules.items())
+    for (const auto &el : tempRules.items())
     {
         //Rule r = Rule();
-        const std::string& n = el.key();
+        const std::string &n = el.key();
         std::string r = el.value().at("regex").get<std::string>();
         std::map<int, std::string> groups;
-        for (const auto& g : el.value().at("groups").items())
+        for (const auto &g : el.value().at("groups").items())
         {
             groups[g.value()[0]] = g.value()[1];
         };

@@ -17,32 +17,31 @@
 #include "../../Dispatcher.h"
 #include "../../IEngineAdapter.h"
 
-namespace engine
+
+namespace adapter
 {
-    namespace adapter
+    class OptimizeMe : public IEngineAdapter
     {
-        class OptimizeMe: public IEngineAdapter
+    public:
+        OptimizeMe()
         {
-            public:
-                OptimizeMe()
-                {
-                }
+        }
 
-                void run()
-                {
+        void run()
+        {
 
-                }
+        }
 
-                int getEngineFunction() const
-                {
-                    return (Dispatcher::ENGINE_FUNCTION::INTERNAL_OPTIMIZE_ME);
-                }
+        int getEngineFunction() const
+        {
+            return (Dispatcher::ENGINE_FUNCTION::INTERNAL_OPTIMIZE_ME);
+        }
 
-                std::string getName() const
-                {
-                    return ("OptimizeMe");
-                }
-        };
-    }
+        std::string getName() const
+        {
+            return ("OptimizeMe");
+        }
+    };
 }
+
 #endif /* SRC_ENGINE_ADAPTER_OPTIMIZEME_OPTIMIZEME_H_ */

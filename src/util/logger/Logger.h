@@ -13,14 +13,16 @@
 #include <string>
 #include <Config.h>
 
-namespace util {
+namespace util
+{
 
-    class Logger {
+    class Logger
+    {
 
     public:
-        Logger(std::string
-               className) :
-                className(className) {
+        explicit Logger(const std::string &className) :
+                className(className)
+        {
         }
 
         const std::string LEVEL_ERROR = "ERROR";
