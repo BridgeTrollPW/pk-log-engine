@@ -1,12 +1,11 @@
 #include <adapter/TextSearch/TextSearchPayload.h>
-#include <adapter/TextSearch/TextSearchPayloadSerializer.h>
+#include <iostream>
 #include <adapter/TextSearch/TextSearch.h>
 #include <adapter/Categorization/Categorization.h>
-#include <iostream>
 #include "Dispatcher.h"
 
 
-Dispatcher::Dispatcher(EngineInput eIN) :
+Dispatcher::Dispatcher(const EngineInput &eIN) :
         engineInput(eIN)
 {
     logger = new util::Logger("Dispatcher");
@@ -44,14 +43,15 @@ void Dispatcher::initEngines()
     //optimize, do not sync standard input output
     std::ios_base::sync_with_stdio(false);
     //optimize, detach console input
-    std::cin.tie(NULL);
+    std::cin.tie(nullptr);
 
     switch (engineInput.function)
     {
         case ENGINE_FUNCTION::SEARCH:
         {
             nlohmann::json jsonPayload = nlohmann::json::parse(engineInput.payload);
-            TextSearchPayload stackAllocation = jsonPayload.get<TextSearchPayload>();
+            TextSearchPayload stackAllocation;
+            stackAllocation.fromJson(jsonPayload);
             executionList.push_back(new adapter::TextSearch(engineInput.serverLogFile, stackAllocation));
             break;
         }
@@ -92,4 +92,3 @@ void Dispatcher::terminate()
     logger->info("Terminating Engine Routine");
     logger->info("Engine stopped");
 }
-

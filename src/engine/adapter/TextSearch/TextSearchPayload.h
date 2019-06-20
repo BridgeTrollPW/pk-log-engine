@@ -6,19 +6,32 @@
 #define LOG_ENGINE_TEXTSEARCHPAYLOAD_H
 
 #include <vector>
+#include <interface/IJsonSerializable.h>
 #include "Payload.h"
 
-class TextSearchPayload : public Payload {
+class TextSearchPayload : public IJsonSerializable
+{
 public:
     std::string startTime, endTime;
     int lineStart = 0, lineEnd = 0;
     std::vector<std::string> searchTerms;
 
-    void to_json(nlohmann::json &j, Payload *&t) override {
-
-    }
-
-    void from_json(nlohmann::json &j, Payload *&t) override {
+    void fromJson(const nlohmann::json &json) override
+    {
+        if (json.contains("startTime") && json.contains("endTime"))
+        {
+            json.at("startTime").get_to(startTime);
+            json.at("endTime").get_to(endTime);
+        }
+        else if (json.contains("lineStart") && json.contains("lineEnd"))
+        {
+            json.at("lineStart").get_to(startTime);
+            json.at("lineEnd").get_to(endTime);
+        }
+        if (json.contains("searchTerms"))
+        {
+            json.at("searchTerms").get_to(searchTerms);
+        }
 
     }
 };

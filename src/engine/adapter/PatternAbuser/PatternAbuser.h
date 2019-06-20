@@ -6,7 +6,7 @@
 #define LOG_ENGINE_PATTERNABUSER_H
 
 #include <Dispatcher.h>
-#include "../../IEngineAdapter.h"
+#include "interface/IEngineAdapter.h"
 
 
 namespace adapter

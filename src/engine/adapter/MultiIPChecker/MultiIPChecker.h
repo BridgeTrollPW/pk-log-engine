@@ -11,7 +11,7 @@
 #ifndef SRC_ENGINE_ADAPTER_MULTIIPCHECKER_MULTIIPCHECKER_H_
 #define SRC_ENGINE_ADAPTER_MULTIIPCHECKER_MULTIIPCHECKER_H_
 
-#include "../../IEngineAdapter.h"
+#include "interface/IEngineAdapter.h"
 
 
 namespace adapter

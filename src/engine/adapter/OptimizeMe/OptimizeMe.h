@@ -15,7 +15,7 @@
 #include <string>
 
 #include "../../Dispatcher.h"
-#include "../../IEngineAdapter.h"
+#include "interface/IEngineAdapter.h"
 
 
 namespace adapter

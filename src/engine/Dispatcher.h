@@ -11,12 +11,10 @@
 #define DISPATCHER_H
 
 #include <list>
-#include <Config.h>
-
-#include "../lib/json.hpp"
-#include "../util/logger/Logger.h"
-#include "IEngineAdapter.h"
-#include "model/EngineInput.h"
+#include <model/EngineInput.h>
+#include <logger/Logger.h>
+#include <json.hpp>
+#include "interface/IEngineAdapter.h"
 
 class Dispatcher
 {
@@ -36,7 +34,7 @@ private:
     void terminate();
 
 public:
-    explicit Dispatcher(EngineInput eIN);
+    explicit Dispatcher(const EngineInput &eIN);
 
     enum ENGINE_FUNCTION
     {

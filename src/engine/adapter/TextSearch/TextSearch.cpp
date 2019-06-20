@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iterator>
 #include <OutputWrapper.h>
+#include <regex>
 
 #include "../../../lib/json.hpp"
 #include "../../../lib/MBLib.h"
@@ -25,6 +26,27 @@ namespace adapter
         {
             throw std::system_error(std::error_code(404, std::system_category()), "No search terms were found");
         }
+
+        if (!payload.startTime.empty() && !payload.endTime.empty())
+        {
+            timedSearch = true;
+            std::vector<std::string> startTimeParts = MBKingdoms::Lib::explode(payload.startTime, ':');
+            std::vector<std::string> endTimeParts = MBKingdoms::Lib::explode(payload.endTime, ':');
+
+            tm endTimeStruct{};
+            endTimeStruct.tm_hour = std::stoi(startTimeParts.at(0));
+            endTimeStruct.tm_min = std::stoi(startTimeParts.at(1));
+            endTimeStruct.tm_sec = std::stoi(startTimeParts.at(2));
+            this->endTime = mktime(&endTimeStruct);
+
+            tm startTimeStruct{};
+            startTimeStruct.tm_hour = std::stoi(startTimeParts.at(0));
+            startTimeStruct.tm_min = std::stoi(startTimeParts.at(1));
+            startTimeStruct.tm_sec = std::stoi(startTimeParts.at(2));
+            this->startTime = mktime(&startTimeStruct);
+        }
+
+
         std::string searchString;
         std::for_each(searchTerms.begin(), searchTerms.end(), [&searchString](std::string &st) -> void
         {
@@ -38,7 +60,7 @@ namespace adapter
 
     void TextSearch::run()
     {
-        auto startTime = getEngineTime();
+        auto searchStartTime = getEngineTime();
         std::ifstream fileInputStream = getFileInputStream(filePath);
         std::string line;
         int lineCounter = 1;
@@ -51,6 +73,34 @@ namespace adapter
         std::cout << outputWrapper;
         while (getline(fileInputStream, line))
         {
+            if (timedSearch)
+            {
+                std::regex logTime("([0-9]{2}):([0-9]{2}):([0-9]{2}).*");
+                std::smatch match;
+                tm currentTimeStruct{};
+                if (std::regex_search(line, match, logTime) && match.size() == 4)
+                {
+                    //first Regex Capture Group [index 0] is the complete string
+                    currentTimeStruct.tm_hour = std::stoi(match.str(1));
+                    currentTimeStruct.tm_min = std::stoi(match.str(2));
+                    currentTimeStruct.tm_sec = std::stoi(match.str(3));
+                }
+                time_t current = mktime(&currentTimeStruct);
+
+                std::cout << std::difftime(current, this->startTime) << std::endl;
+                std::cout << std::difftime(current, this->endTime);
+                //If before start time, continue the while loop
+                if (std::difftime(current, this->startTime) < 0)
+                {
+                    continue;
+                }
+                //Anything between start time and end time will be searched
+                //If after endTime, break the while loop
+                if (std::difftime(current, this->endTime) > 0)
+                {
+                    break;
+                }
+            }
             auto it = std::find_if(begin(searchTerms), end(searchTerms), [&](const std::string &s)
             {
                 return (line.find(s) != std::string::npos);
@@ -61,15 +111,25 @@ namespace adapter
             {
                 o["lineNumber"] = lineCounter;
                 o["string"] = line;
-                std::cout << o << ',';
+                outputWrapper.push(o);
                 resultCounter++;
             }
             lineCounter++;
         }
-        outputWrapper.close(false);
+        outputWrapper.close();
 
-        auto endTime = getEngineTime();
+        auto searchEndTime = getEngineTime();
         logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " +
-                    getDurationMS(startTime, endTime) + " ms");
+                    getDurationMS(searchStartTime, searchEndTime) + " ms");
+    }
+
+    std::string TextSearch::getName() const
+    {
+        return "TextSearch";
+    }
+
+    int TextSearch::getEngineFunction() const
+    {
+        return Dispatcher::ENGINE_FUNCTION::SEARCH;
     }
 }

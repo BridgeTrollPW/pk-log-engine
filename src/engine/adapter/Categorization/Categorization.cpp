@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <map>
+#include <Dispatcher.h>
 
 using namespace adapter;
 
@@ -41,4 +42,14 @@ Categorization::~Categorization()
 
 void Categorization::run()
 {
+}
+
+int Categorization::getEngineFunction() const
+{
+    return Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE;
+}
+
+std::string Categorization::getName() const
+{
+    return ("Categorization");
 }

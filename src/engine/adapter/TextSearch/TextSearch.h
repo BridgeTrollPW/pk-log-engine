@@ -10,15 +10,9 @@
 #ifndef TEXTSEARCH_H
 #define TEXTSEARCH_H
 
-#include <list>
-#include <string>
-#include <vector>
-
-#include "../../../util/logger/Logger.h"
-#include "../../Dispatcher.h"
-#include "../../IEngineAdapter.h"
+#include <interface/IEngineAdapter.h>
+#include <Dispatcher.h>
 #include "TextSearchPayload.h"
-
 
 namespace adapter
 {
@@ -31,19 +25,13 @@ namespace adapter
          * get Engine name as string
          * immutable
          */
-        std::string getName() const override
-        {
-            return ("TextSearch");
-        }
+        std::string getName() const override;
 
         /**
          * get engine function as integer value
          * immutable
          */
-        int getEngineFunction() const override
-        {
-            return (Dispatcher::ENGINE_FUNCTION::SEARCH);
-        }
+        int getEngineFunction() const override;
 
         void run() override;
 
@@ -55,6 +43,9 @@ namespace adapter
 
         std::string filePath;
         std::vector<std::string> searchTerms;
+        std::time_t startTime;
+        std::time_t endTime;
+        bool timedSearch{false};
     };
 }
 

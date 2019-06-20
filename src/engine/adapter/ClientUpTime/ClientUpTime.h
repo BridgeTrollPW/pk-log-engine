@@ -11,15 +11,10 @@
 #ifndef SRC_ENGINE_ADAPTER_CLIENTUPTIME_CLIENTUPTIME_H_
 #define SRC_ENGINE_ADAPTER_CLIENTUPTIME_CLIENTUPTIME_H_
 
-#include <list>
-#include <string>
-#include <vector>
 
-#include "../../../util/logger/Logger.h"
-#include "../../Dispatcher.h"
-#include "../../IEngineAdapter.h"
+#include <interface/IEngineAdapter.h>
+#include <Dispatcher.h>
 #include "Connection.h"
-
 
 namespace adapter
 {
@@ -29,16 +24,16 @@ namespace adapter
     public:
         ClientUpTime(std::string filePath, std::string searchTerms);
 
-        ~ClientUpTime();
+        ~ClientUpTime() override;
 
-        void run();
+        void run() override;
 
-        int getEngineFunction() const
+        int getEngineFunction() const override
         {
-            return (Dispatcher::ENGINE_FUNCTION::CLIENT_UPTIME);
+            return Dispatcher::ENGINE_FUNCTION::CLIENT_UPTIME;
         }
 
-        std::string getName() const
+        std::string getName() const override
         {
             return ("ClientUpTime");
         }

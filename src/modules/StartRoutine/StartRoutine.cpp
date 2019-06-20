@@ -15,11 +15,9 @@ void from_json(const nlohmann::json &j, EngineInput &e)
 
 StartRoutine::StartRoutine(const std::string &stdInput)
 {
-    Config *c;
-
     nlohmann::json jsonHND = nlohmann::json::parse(stdInput);
     EngineInput eIN = jsonHND.get<EngineInput>();
-    c = new Config(eIN.configPath);
+    Config* c = new Config(eIN.configPath);
 
     Dispatcher d = Dispatcher(eIN);
 }

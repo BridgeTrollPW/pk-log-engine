@@ -12,12 +12,13 @@ class OutputWrapper
 {
 private:
     bool active;
+    std::string buffer{};
 public:
     OutputWrapper();
     friend std::ostream& operator<<(std::ostream& os, OutputWrapper& obj);
     void open();
-    void push(std::string);
-    void close(bool removeLastChar);
+    void push(const std::string &output);
+    void close();
 };
 
 

@@ -1,3 +1,5 @@
+#include <utility>
+
 /* Created by BridgeTroll
  * https://bridgetroll.de
  * https://steamcommunity.com/id/Bridge_Troll/
@@ -8,20 +10,16 @@
  *      Author: bt
  */
 
+#include <MBLib.h>
+#include <adapter/Categorization/Categorization.h>
+#include <iostream>
 #include "ClientUpTime.h"
 
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-
-#include "../../../lib/MBLib.h"
-#include "../Categorization/Categorization.h"
-#include "../Categorization/Rule.h"
 
 using namespace adapter;
 
 ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
-        filePath(filePath)
+        filePath(std::move(filePath))
 {
     playerGuids = MBKingdoms::Lib::explode(searchTerms, ';');
     if (playerGuids.empty())
@@ -36,8 +34,7 @@ ClientUpTime::ClientUpTime(std::string filePath, std::string searchTerms) :
 }
 
 ClientUpTime::~ClientUpTime()
-{
-}
+= default;
 
 void ClientUpTime::run()
 {

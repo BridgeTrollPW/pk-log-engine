@@ -1,11 +1,7 @@
 {
   "function": 0,
-  "configFile": "resources/config.json",
-  "serverLogFile": "resources/logs.txt",
-  "payload": {
-    "searchTerms": [
-      "Cheese"
-    ]
-  },
+  "configFile": "/home/bt/checkout/log-engine/resources/config.json",
+  "serverLogFile": "/home/bt/checkout/log-engine/resources/logs.txt",
+  "payload": "{\"searchTerms\":[\"Cheese\"],\"startTime\":\"00:00:00\",\"endTime\":\"00:30:00\"}",
   "prettyPrinting": false
 }

@@ -12,9 +12,7 @@
 
 #include <list>
 #include <string>
-
-#include "../../Dispatcher.h"
-#include "../../IEngineAdapter.h"
+#include <interface/IEngineAdapter.h>
 #include "Rule.h"
 
 
@@ -29,15 +27,9 @@ namespace adapter
 
         void run() override;
 
-        int getEngineFunction() const override
-        {
-            return (Dispatcher::ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE);
-        }
+        int getEngineFunction() const override;
 
-        std::string getName() const override
-        {
-            return ("Categorization");
-        }
+        std::string getName() const override;
 
         std::map<std::string, Rule> getRules() const
         {

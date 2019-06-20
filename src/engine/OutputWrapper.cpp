@@ -22,8 +22,20 @@ std::ostream &operator<<(std::ostream &os, OutputWrapper &obj)
     return os;
 }
 
-void OutputWrapper::close(bool removeLastChar)
+void OutputWrapper::close()
 {
     std::cout << "]";
+    active = false;
 }
 
+void OutputWrapper::push(const std::string &output)
+{
+    //Empty buffer is interpreted as that the current output stream is still used by a json element that did
+    // not fit (or similar) into one stream ouptu
+    if (!buffer.empty())
+    {
+        std::cout << ',';
+    }
+    std::cout << buffer;
+    buffer = output;
+}

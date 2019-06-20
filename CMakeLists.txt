@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(log_engine)
 
 set(CMAKE_CXX_STANDARD 14)
+#add_compile_options("-Wall")
 
 include_directories(src/engine)
 include_directories(src/engine/adapter/Categorization)
@@ -31,7 +32,7 @@ add_executable(log_engine
         src/engine/model/EngineInput.h
         src/engine/Dispatcher.cpp
         src/engine/Dispatcher.h
-        src/engine/IEngineAdapter.h
+        src/engine/interface/IEngineAdapter.h
         src/lib/json.hpp
         src/lib/MBLib.h
         src/modules/StartRoutine/StartRoutine.cpp
@@ -45,6 +46,5 @@ add_executable(log_engine
         src/util/Config.cpp
         src/engine/model/Payload.h
         src/engine/adapter/TextSearch/TextSearchPayload.h
-        src/engine/adapter/TextSearch/TextSearchPayloadSerializer.h
         src/engine/adapter/PatternAbuser/PatternAbuser.cpp
-        src/engine/adapter/PatternAbuser/PatternAbuser.h src/engine/OutputWrapper.cpp src/engine/OutputWrapper.h)
+        src/engine/adapter/PatternAbuser/PatternAbuser.h src/engine/OutputWrapper.cpp src/engine/OutputWrapper.h src/engine/interface/IJsonSerializable.h)
