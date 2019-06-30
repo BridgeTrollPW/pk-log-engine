@@ -2,6 +2,6 @@
   "function": 0,
   "configFile": "/home/bt/checkout/log-engine/resources/config.json",
   "serverLogFile": "/home/bt/checkout/log-engine/resources/logs.txt",
-  "payload": "{\"searchTerms\":[\"Cheese\"],\"startTime\":\"00:00:00\",\"endTime\":\"00:30:00\"}",
+  "payload": "{\"searchTerms\":[\"Cheese\", \"Border\"],\"startTime\":\"00:00:00\",\"endTime\":\"00:30:00\"}",
   "prettyPrinting": false
 }

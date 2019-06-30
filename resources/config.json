@@ -1,6 +1,6 @@
 {
   "core": {
-    "version": "0.6",
+    "version": "0.7.1",
     "logPath": "/home/bt/checkout/log-engine/resources"
   },
   "adapters": {

@@ -12,14 +12,8 @@ OutputWrapper::OutputWrapper()
 
 void OutputWrapper::open()
 {
-    active = true;
-}
-
-std::ostream &operator<<(std::ostream &os, OutputWrapper &obj)
-{
-    obj.open();
     std::cout << "[";
-    return os;
+    active = true;
 }
 
 void OutputWrapper::close()
@@ -36,6 +30,7 @@ void OutputWrapper::push(const std::string &output)
     {
         std::cout << ',';
     }
-    std::cout << buffer;
+    std::cout << output;
+    //Unnecessary copy of output into buffer, @TODO optimize-me
     buffer = output;
 }

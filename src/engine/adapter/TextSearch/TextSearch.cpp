@@ -70,7 +70,7 @@ namespace adapter
         std::list<nlohmann::json> j;
 
         OutputWrapper outputWrapper{};
-        std::cout << outputWrapper;
+        outputWrapper.open();
         while (getline(fileInputStream, line))
         {
             if (timedSearch)
@@ -87,8 +87,7 @@ namespace adapter
                 }
                 time_t current = mktime(&currentTimeStruct);
 
-                std::cout << std::difftime(current, this->startTime) << std::endl;
-                std::cout << std::difftime(current, this->endTime);
+
                 //If before start time, continue the while loop
                 if (std::difftime(current, this->startTime) < 0)
                 {
@@ -111,7 +110,7 @@ namespace adapter
             {
                 o["lineNumber"] = lineCounter;
                 o["string"] = line;
-                outputWrapper.push(o);
+                outputWrapper.push(o.dump());
                 resultCounter++;
             }
             lineCounter++;
