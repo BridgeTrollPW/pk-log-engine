@@ -14,6 +14,7 @@ class TextSearchPayload : public IJsonSerializable
 public:
     std::string startTime, endTime;
     int lineStart = 0, lineEnd = 0;
+    bool caseSensitivity = false;
     std::vector<std::string> searchTerms;
 
     void fromJson(const nlohmann::json &json) override
@@ -32,7 +33,10 @@ public:
         {
             json.at("searchTerms").get_to(searchTerms);
         }
-
+        if (json.contains("caseSensitivity"))
+        {
+            json.at("caseSensitivity").get_to(caseSensitivity);
+        }
     }
 };
 

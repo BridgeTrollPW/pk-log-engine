@@ -46,6 +46,7 @@ namespace adapter
         std::time_t startTime;
         std::time_t endTime;
         bool timedSearch{false};
+        bool caseSensitivity{false};
     };
 }
 

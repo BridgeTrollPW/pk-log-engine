@@ -21,6 +21,7 @@ namespace adapter
     {
         logger.info("Starting TextSearch Adapter");
         this->searchTerms = payload.searchTerms;
+        this->caseSensitivity = payload.caseSensitivity;
         //this->searchTerms
         if (this->searchTerms.empty())
         {
@@ -101,8 +102,16 @@ namespace adapter
                     break;
                 }
             }
-            auto it = std::find_if(begin(searchTerms), end(searchTerms), [&](const std::string &s)
+            auto it = std::find_if(begin(searchTerms), end(searchTerms), [&line, this](std::string &s)
             {
+                if(!this->caseSensitivity)
+                {
+                    //need a local copy so we do not modify the actual logline reference
+                    std::string tmpLine = line;
+                    std::transform(tmpLine.begin(), tmpLine.end(), tmpLine.begin(), ::tolower);
+                    std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+                    return (tmpLine.find(s) != std::string::npos);
+                }
                 return (line.find(s) != std::string::npos);
             });
 
