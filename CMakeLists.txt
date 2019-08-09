@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 project(log_engine)
 
 set(CMAKE_CXX_STANDARD 14)
-#add_compile_options("-Wall")
+add_compile_options("-fno-omit-frame-pointer")
+add_compile_options("-Wall")
+add_compile_options("-fsanitize=address")
+add_compile_options("-O3")
+#No, don't do it, don't do it!
+#add_compile_options("-v")
 
 include_directories(src/engine)
 include_directories(src/engine/adapter/Categorization)
@@ -16,6 +21,8 @@ include_directories(src/modules/StartRoutine)
 include_directories(src/util)
 include_directories(src/util/exceptions)
 include_directories(src/util/logger)
+
+
 
 add_executable(log_engine
         src/engine/adapter/Categorization/Categorization.cpp
@@ -48,3 +55,7 @@ add_executable(log_engine
         src/engine/adapter/TextSearch/TextSearchPayload.h
         src/engine/adapter/PatternAbuser/PatternAbuser.cpp
         src/engine/adapter/PatternAbuser/PatternAbuser.h src/engine/OutputWrapper.cpp src/engine/OutputWrapper.h src/engine/interface/IJsonSerializable.h)
+
+target_link_libraries(log_engine
+        -fsanitize=address
+        )
