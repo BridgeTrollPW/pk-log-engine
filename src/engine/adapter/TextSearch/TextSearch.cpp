@@ -34,9 +34,9 @@ namespace adapter
             std::vector<std::string> endTimeParts = MBKingdoms::Lib::explode(payload.endTime, ':');
 
             tm endTimeStruct{};
-            endTimeStruct.tm_hour = std::stoi(startTimeParts.at(0));
-            endTimeStruct.tm_min = std::stoi(startTimeParts.at(1));
-            endTimeStruct.tm_sec = std::stoi(startTimeParts.at(2));
+            endTimeStruct.tm_hour = std::stoi(endTimeParts.at(0));
+            endTimeStruct.tm_min = std::stoi(endTimeParts.at(1));
+            endTimeStruct.tm_sec = std::stoi(endTimeParts.at(2));
             this->endTime = mktime(&endTimeStruct);
 
             tm startTimeStruct{};
@@ -63,7 +63,7 @@ namespace adapter
         auto searchStartTime = getEngineTime();
         std::ifstream fileInputStream = getFileInputStream(filePath);
         std::string line;
-        int lineCounter = 1;
+        int lineCounter = 0;
         int resultCounter = 0;
 
         nlohmann::json o;
@@ -73,6 +73,7 @@ namespace adapter
         outputWrapper.open();
         while (getline(fileInputStream, line))
         {
+            lineCounter++;
             if (timedSearch)
             {
                 std::regex logTime("([0-9]{2}):([0-9]{2}):([0-9]{2}).*");
@@ -113,7 +114,7 @@ namespace adapter
                 outputWrapper.push(o.dump());
                 resultCounter++;
             }
-            lineCounter++;
+
         }
         outputWrapper.close();
 
