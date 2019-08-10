@@ -16,6 +16,10 @@
 
 using namespace adapter;
 
+void Categorization::terminate() {
+
+}
+
 Categorization::Categorization()
 {
     //load rules from fileStream into JSON object
@@ -40,7 +44,7 @@ Categorization::Categorization()
 Categorization::~Categorization()
 = default;
 
-void Categorization::run()
+void Categorization::run(AsyncExecutionBuffer &asyncExecutionBuffer)
 {
 }
 

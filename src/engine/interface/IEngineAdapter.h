@@ -14,47 +14,36 @@
 #include <chrono>
 #include <fstream>
 #include <string>
+#include <task/AsyncExecutionBuffer.h>
+#include <model/IExecutionTask.h>
 
 
 using engineTime = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
 
-class IEngineAdapter
-{
+class IEngineAdapter : public IExecutionTask {
 public:
     virtual int getEngineFunction() const = 0;
-
-    virtual void run() = 0;
 
     virtual std::string getName() const = 0;
 
 protected:
-    virtual ~IEngineAdapter()
-    {
-        //Todo cleanup lololololol just joking,
-        //this would trash the memory at some point if the interface is used wrongly, so JUST DO IT
-    }
+    virtual ~IEngineAdapter() = default;
 
-    std::ifstream getFileInputStream(std::string filePath)
-    {
+    static std::ifstream getFileInputStream(const std::string &filePath) {
         std::ifstream filePtr(filePath, std::ifstream::in);
-        if (!filePtr.is_open())
-        {
+        if (!filePtr.is_open()) {
             throw std::system_error(std::error_code(404, std::system_category()),
                                     "File " + filePath + " cannot be opened");
-        }
-        else
-        {
+        } else {
             return (filePtr);
         }
     }
 
-    engineTime getEngineTime()
-    {
+    static engineTime getEngineTime() {
         return (std::chrono::high_resolution_clock::now());
     }
 
-    std::string getDurationMS(engineTime start, engineTime end)
-    {
+    static std::string getDurationMS(engineTime start, engineTime end) {
         return (std::to_string(std::chrono::duration_cast<
                 std::chrono::milliseconds>(end - start).count()));
     }

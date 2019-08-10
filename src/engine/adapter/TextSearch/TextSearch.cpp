@@ -12,6 +12,7 @@
 #include "../../../lib/json.hpp"
 #include "../../../lib/MBLib.h"
 #include "TextSearchPayload.h"
+#include "TextSearchBufferElement.h"
 
 
 namespace adapter
@@ -59,7 +60,7 @@ namespace adapter
 
     TextSearch::~TextSearch() = default;
 
-    void TextSearch::run()
+    void TextSearch::run(AsyncExecutionBuffer &asyncExecutionBuffer)
     {
         auto searchStartTime = getEngineTime();
         std::ifstream fileInputStream = getFileInputStream(filePath);
@@ -68,10 +69,10 @@ namespace adapter
         int resultCounter = 0;
 
         nlohmann::json o;
-        std::list<nlohmann::json> j;
+        //std::list<nlohmann::json> j;
 
-        OutputWrapper outputWrapper{};
-        outputWrapper.open();
+        //OutputWrapper outputWrapper{};
+        //outputWrapper.open();
         while (getline(fileInputStream, line))
         {
             lineCounter++;
@@ -118,14 +119,16 @@ namespace adapter
 
             if (it != end(searchTerms))
             {
-                o["lineNumber"] = lineCounter;
-                o["string"] = line;
-                outputWrapper.push(o.dump());
+                TextSearchBufferElement* textSearchBufferElement = new TextSearchBufferElement(lineCounter, line);
+                asyncExecutionBuffer.push(textSearchBufferElement);
+                o["line"] = line;
+                o["number"] = lineCounter;
+                std::cout << o.dump();
                 resultCounter++;
             }
 
         }
-        outputWrapper.close();
+        //outputWrapper.close();
 
         auto searchEndTime = getEngineTime();
         logger.info("Search run finished with " + std::to_string(resultCounter) + " found results. Took " +
@@ -140,5 +143,9 @@ namespace adapter
     int TextSearch::getEngineFunction() const
     {
         return Dispatcher::ENGINE_FUNCTION::SEARCH;
+    }
+
+    void TextSearch::terminate() {
+
     }
 }

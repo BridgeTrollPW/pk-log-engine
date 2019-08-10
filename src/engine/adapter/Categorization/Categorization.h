@@ -25,7 +25,7 @@ namespace adapter
 
         ~Categorization() override;
 
-        void run() override;
+        void run(AsyncExecutionBuffer &asyncExecutionBuffer) override;
 
         int getEngineFunction() const override;
 
@@ -35,6 +35,8 @@ namespace adapter
         {
             return (rules);
         }
+
+        void terminate() override;
 
     private:
         std::map<std::string, Rule> rules;
