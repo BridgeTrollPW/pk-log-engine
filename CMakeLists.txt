@@ -6,6 +6,7 @@ add_compile_options("-fno-omit-frame-pointer")
 add_compile_options("-Wall")
 add_compile_options("-fsanitize=address")
 add_compile_options("-O1")
+add_compile_options("-pthread")
 #No, don't do it, don't do it!
 #add_compile_options("-v")
 
@@ -21,8 +22,6 @@ include_directories(src/modules/StartRoutine)
 include_directories(src/util)
 include_directories(src/util/exceptions)
 include_directories(src/util/logger)
-
-
 
 add_executable(log_engine
         src/engine/adapter/Categorization/Categorization.cpp
@@ -51,9 +50,15 @@ add_executable(log_engine
         src/engine/OutputWrapper.cpp
         src/engine/OutputWrapper.h
         src/engine/interface/IJsonSerializable.h
-        src/engine/AsyncExecutionBuffer.cpp
-        src/engine/AsyncExecutionBuffer.h
-        src/engine/interface/IEngineOutputElement.h src/engine/adapter/TextSearch/TextSearchBufferElement.h src/engine/adapter/STDOutput.cpp src/engine/adapter/STDOutput.h)
+        src/engine/task/AsyncExecutionBuffer.cpp
+        src/engine/task/AsyncExecutionBuffer.h
+        src/engine/interface/IEngineOutputElement.h
+        src/engine/adapter/TextSearch/TextSearchBufferElement.h
+        src/engine/adapter/STDOutput.cpp
+        src/engine/adapter/STDOutput.h
+        src/engine/task/TaskScheduler.cpp
+        src/engine/task/TaskScheduler.h
+        src/engine/model/IExecutionTask.h)
 
 target_link_libraries(log_engine
         -fsanitize=address

@@ -46,11 +46,11 @@ void Dispatcher::initEngines() {
             nlohmann::json jsonPayload = nlohmann::json::parse(engineInput.payload);
             TextSearchPayload stackAllocation;
             stackAllocation.fromJson(jsonPayload);
-            executionList.push_back(new adapter::TextSearch(engineInput.serverLogFile, stackAllocation));
+            taskScheduler.registerTask(new adapter::TextSearch(engineInput.serverLogFile, stackAllocation));
             break;
         }
         case ENGINE_FUNCTION::SEARCH_AND_CATEGORIZE: {
-            executionList.push_back(new adapter::Categorization());
+            taskScheduler.registerTask(new adapter::Categorization());
             break;
         }
         case ENGINE_FUNCTION::CLIENT_UPTIME: {
@@ -62,37 +62,10 @@ void Dispatcher::initEngines() {
             break;
         }
     }
-
-    for (IEngineAdapter *engine : executionList) {
-        logger->info("Loaded " + engine->getName() + " into executionList");
-    }
 }
 
 void Dispatcher::run() {
-    AsyncExecutionBuffer asyncExecutionBuffer;
-    adapter::STDOutput stdOutput;
-
-    /*std::future<void> outputConsumer = std::async(std::launch::async,
-                                                  [&asyncExecutionBuffer, &stdOutput]() -> void {
-                                                      return stdOutput.run(std::ref(asyncExecutionBuffer));
-                                                  });*/
-    std::thread outputConsumer(&IEngineAdapter::run, &stdOutput, std::ref(asyncExecutionBuffer));
-
-    /*std::list<std::thread*> threadList;
-    for (IEngineAdapter *engine : executionList) {
-        logger->info("Running " + engine->getName() + " Engine  Adapter");
-        //engine->run();
-        /*std::future<void> fExecution = std::async(std::launch::async, [&engine, &asyncExecutionBuffer]() -> void {
-            return engine->run(std::ref(asyncExecutionBuffer));
-        });
-        std::thread executeEngine(&IEngineAdapter::run, engine, std::ref(asyncExecutionBuffer));
-        threadList.emplace_back(&executeEngine);
-    }
-    for (auto &future : threadList) {
-        future->join();
-    }
-    stdOutput.shutdown(); */
-    //outputConsumer.join();
+    taskScheduler.start();
 }
 
 void Dispatcher::terminate() {

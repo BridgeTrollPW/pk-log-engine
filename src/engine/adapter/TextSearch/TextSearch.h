@@ -35,6 +35,8 @@ namespace adapter
 
         void run(AsyncExecutionBuffer &asyncExecutionBuffer) override;
 
+        void terminate() override;
+
     protected:
         ~TextSearch() override;
 

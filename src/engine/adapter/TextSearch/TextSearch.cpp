@@ -68,7 +68,7 @@ namespace adapter
         int lineCounter = 0;
         int resultCounter = 0;
 
-        //nlohmann::json o;
+        nlohmann::json o;
         //std::list<nlohmann::json> j;
 
         //OutputWrapper outputWrapper{};
@@ -121,6 +121,9 @@ namespace adapter
             {
                 TextSearchBufferElement* textSearchBufferElement = new TextSearchBufferElement(lineCounter, line);
                 asyncExecutionBuffer.push(textSearchBufferElement);
+                o["line"] = line;
+                o["number"] = lineCounter;
+                std::cout << o.dump();
                 resultCounter++;
             }
 
@@ -140,5 +143,9 @@ namespace adapter
     int TextSearch::getEngineFunction() const
     {
         return Dispatcher::ENGINE_FUNCTION::SEARCH;
+    }
+
+    void TextSearch::terminate() {
+
     }
 }

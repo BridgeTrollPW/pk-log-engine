@@ -16,6 +16,10 @@
 
 using namespace adapter;
 
+void Categorization::terminate() {
+
+}
+
 Categorization::Categorization()
 {
     //load rules from fileStream into JSON object

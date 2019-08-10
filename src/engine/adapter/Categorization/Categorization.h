@@ -36,6 +36,8 @@ namespace adapter
             return (rules);
         }
 
+        void terminate() override;
+
     private:
         std::map<std::string, Rule> rules;
 

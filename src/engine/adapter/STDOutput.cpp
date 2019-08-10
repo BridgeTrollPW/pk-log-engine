@@ -8,7 +8,7 @@
 
 using namespace adapter;
 
-STDOutput::STDOutput() {
+STDOutput::STDOutput(std::condition_variable &conditionVariable) {
     running = true;
 }
 
@@ -17,17 +17,26 @@ int STDOutput::getEngineFunction() const {
 }
 
 void STDOutput::run(AsyncExecutionBuffer &asyncExecutionBuffer) {
-    while(!asyncExecutionBuffer.isEmpty() || running)
-    {
-        logger.debug("doing output");
-        IEngineOutputElement* output = asyncExecutionBuffer.pop();
-        std::cout << output->getLineContent() << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    while (shouldRun(asyncExecutionBuffer)) {
+        if (!asyncExecutionBuffer.isEmpty()) {
+            logger.debug("doing output");
+            IEngineOutputElement *output = asyncExecutionBuffer.pop();
+            std::cout << output->getLineContent() << std::endl;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
     logger.debug("STDOutput killed");
 }
 
-void STDOutput::shutdown() {
+void STDOutput::terminate() {
     logger.debug("send shutdown to STDOutput Thread");
     running = false;
+}
+
+bool STDOutput::shouldRun(AsyncExecutionBuffer &asyncExecutionBuffer) {
+    if (running && !asyncExecutionBuffer.isEmpty()) { return true; }
+    else if (!running && !asyncExecutionBuffer.isEmpty()) { return true; }
+    else if (running && asyncExecutionBuffer.isEmpty()) { return true; }
+    else if (!running && asyncExecutionBuffer.isEmpty()) { return false; }
+    return false;
 }

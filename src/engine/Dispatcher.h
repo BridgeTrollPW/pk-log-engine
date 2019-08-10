@@ -14,6 +14,7 @@
 #include <model/EngineInput.h>
 #include <logger/Logger.h>
 #include <json.hpp>
+#include <task/TaskScheduler.h>
 #include "interface/IEngineAdapter.h"
 
 class Dispatcher
@@ -22,8 +23,7 @@ private:
     EngineInput engineInput;
     util::Logger *logger;
     nlohmann::json configuration;
-
-    std::list<IEngineAdapter *> executionList;
+    TaskScheduler taskScheduler;
 
     void validate(const std::string &payload);
 

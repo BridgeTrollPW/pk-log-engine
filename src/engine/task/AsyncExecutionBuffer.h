@@ -10,16 +10,21 @@
 #include <list>
 #include <logger/Logger.h>
 #include <mutex>
+#include <condition_variable>
 
 class AsyncExecutionBuffer {
 private:
-    std::list<IEngineOutputElement*> buffer;
+    std::list<IEngineOutputElement *> buffer;
     util::Logger logger = util::Logger("AsyncExecutionBuffer");
     std::mutex mtx;
+    std::condition_variable conditionVariable;
 public:
-    AsyncExecutionBuffer();
-    void push(IEngineOutputElement* bufferInput);
-    IEngineOutputElement* pop();
+    explicit AsyncExecutionBuffer(std::condition_variable &conditionVariable);
+
+    void push(IEngineOutputElement *bufferInput);
+
+    IEngineOutputElement *pop();
+
     bool isEmpty();
 };
 

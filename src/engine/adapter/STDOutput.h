@@ -13,8 +13,11 @@ namespace adapter {
     private:
         bool running;
         util::Logger logger = util::Logger(getName());
+
+        bool shouldRun(AsyncExecutionBuffer &asyncExecutionBuffer);
+
     public:
-        STDOutput();
+        explicit STDOutput(std::condition_variable &conditionVariable);
 
         ~STDOutput() override = default;
 
@@ -27,7 +30,7 @@ namespace adapter {
             return "STDOutput";
         };
 
-        void shutdown();
+        void terminate() override;
     };
 }
 
