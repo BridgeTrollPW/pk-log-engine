@@ -14,6 +14,7 @@
 #include <chrono>
 #include <fstream>
 #include <string>
+#include <AsyncExecutionBuffer.h>
 
 
 using engineTime = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
@@ -23,18 +24,14 @@ class IEngineAdapter
 public:
     virtual int getEngineFunction() const = 0;
 
-    virtual void run() = 0;
+    virtual void run(AsyncExecutionBuffer &asyncExecutionBuffer) = 0;
 
     virtual std::string getName() const = 0;
 
 protected:
-    virtual ~IEngineAdapter()
-    {
-        //Todo cleanup lololololol just joking,
-        //this would trash the memory at some point if the interface is used wrongly, so JUST DO IT
-    }
+    virtual ~IEngineAdapter() = default;
 
-    std::ifstream getFileInputStream(std::string filePath)
+    static std::ifstream getFileInputStream(std::string filePath)
     {
         std::ifstream filePtr(filePath, std::ifstream::in);
         if (!filePtr.is_open())
@@ -48,12 +45,12 @@ protected:
         }
     }
 
-    engineTime getEngineTime()
+    static engineTime getEngineTime()
     {
         return (std::chrono::high_resolution_clock::now());
     }
 
-    std::string getDurationMS(engineTime start, engineTime end)
+    static std::string getDurationMS(engineTime start, engineTime end)
     {
         return (std::to_string(std::chrono::duration_cast<
                 std::chrono::milliseconds>(end - start).count()));

@@ -25,7 +25,7 @@ namespace adapter
 
         ~Categorization() override;
 
-        void run() override;
+        void run(AsyncExecutionBuffer &asyncExecutionBuffer) override;
 
         int getEngineFunction() const override;
 

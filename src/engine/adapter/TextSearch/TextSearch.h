@@ -33,7 +33,7 @@ namespace adapter
          */
         int getEngineFunction() const override;
 
-        void run() override;
+        void run(AsyncExecutionBuffer &asyncExecutionBuffer) override;
 
     protected:
         ~TextSearch() override;

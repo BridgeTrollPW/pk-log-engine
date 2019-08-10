@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_compile_options("-fno-omit-frame-pointer")
 add_compile_options("-Wall")
 add_compile_options("-fsanitize=address")
-add_compile_options("-O3")
+add_compile_options("-O1")
 #No, don't do it, don't do it!
 #add_compile_options("-v")
 
@@ -29,11 +29,6 @@ add_executable(log_engine
         src/engine/adapter/Categorization/Categorization.h
         src/engine/adapter/Categorization/Result.h
         src/engine/adapter/Categorization/Rule.h
-        src/engine/adapter/ClientUpTime/ClientUpTime.cpp
-        src/engine/adapter/ClientUpTime/ClientUpTime.h
-        src/engine/adapter/ClientUpTime/Connection.h
-        src/engine/adapter/MultiIPChecker/MultiIPChecker.h
-        src/engine/adapter/OptimizeMe/OptimizeMe.h
         src/engine/adapter/TextSearch/TextSearch.cpp
         src/engine/adapter/TextSearch/TextSearch.h
         src/engine/model/EngineInput.h
@@ -53,8 +48,12 @@ add_executable(log_engine
         src/util/Config.cpp
         src/engine/model/Payload.h
         src/engine/adapter/TextSearch/TextSearchPayload.h
-        src/engine/adapter/PatternAbuser/PatternAbuser.cpp
-        src/engine/adapter/PatternAbuser/PatternAbuser.h src/engine/OutputWrapper.cpp src/engine/OutputWrapper.h src/engine/interface/IJsonSerializable.h)
+        src/engine/OutputWrapper.cpp
+        src/engine/OutputWrapper.h
+        src/engine/interface/IJsonSerializable.h
+        src/engine/AsyncExecutionBuffer.cpp
+        src/engine/AsyncExecutionBuffer.h
+        src/engine/interface/IEngineOutputElement.h src/engine/adapter/TextSearch/TextSearchBufferElement.h src/engine/adapter/STDOutput.cpp src/engine/adapter/STDOutput.h)
 
 target_link_libraries(log_engine
         -fsanitize=address

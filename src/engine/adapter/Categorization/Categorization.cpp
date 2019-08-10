@@ -40,7 +40,7 @@ Categorization::Categorization()
 Categorization::~Categorization()
 = default;
 
-void Categorization::run()
+void Categorization::run(AsyncExecutionBuffer &asyncExecutionBuffer)
 {
 }
 
